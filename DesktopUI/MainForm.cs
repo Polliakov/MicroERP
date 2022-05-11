@@ -1,37 +1,45 @@
 ﻿using BL.DataProviders;
-using DataBase.Contexts;
+using BL.Security;
 using DataBase.Entities;
-using DesktopUI.CustomControls;
 using DesktopUI.EmbeddedForms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Entity;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DesktopUI
 {
     public partial class MainForm : Form
-    {    
-        public MainForm()
+    {
+        public MainForm(AuthenticatedUser currentUser)
         {
+            this.currentUser = currentUser;
             InitializeComponent();
+            AddSideMenuItems();
         }
 
-        private readonly DataProviderFactory dataProviderFactory = new DataProviderFactory();
+        private readonly EmbaddedFormFactory embaddedFormFactory = new EmbaddedFormFactory();
+        private readonly AuthenticatedUser currentUser;
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AddSideMenuItems()
         {
-            var form1 = new DataForm<User>(dataProviderFactory.NewUserDataProvider());
-            formTabControl.AddTab("Петя", form1);
-            var form = new DataForm<Product>(dataProviderFactory.NewProductDataProvider());
-            formTabControl.AddTab("Коля", form);
-            formTabControl.AddTab("Ваня", this);
+            sideMenu.ItemClick += SideMenu_ItemClick;
+
+            sideMenu.AddItem("Товары", EmbaddedForm.ProductDataForm);
+
+            if (currentUser.Role != UserRole.Administrator) return;
+
+            sideMenu.AddItem("Продажи", EmbaddedForm.ChequeDataForm);
+            sideMenu.AddItem("Поставки", EmbaddedForm.ProductPickingDataForm);
+            sideMenu.AddItem("Списания", EmbaddedForm.ProductWriteOfDataForm);
+            sideMenu.AddItem("Пользователи", EmbaddedForm.UserDataForm);
+            sideMenu.AddItem("Склады", EmbaddedForm.WarehouseDataForm);
+        }
+
+        private void SideMenu_ItemClick(string title, object tag)
+        {
+            if (!(tag is EmbaddedForm))
+                throw new NotSupportedException();
+            var formType = (EmbaddedForm)tag;
+            formTabControl.AddTab(title, embaddedFormFactory.New(formType));
         }
     }
 }

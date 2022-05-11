@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using DataBase.Attributes;
 
 namespace DataBase.Entities
 {
@@ -10,15 +10,15 @@ namespace DataBase.Entities
         [Browsable(false)]
         public int Id { get; set; }
 
-        [DisplayName("Наименование")]
         [Required]
+        [DisplayName("Наименование")]
         public string Name { get; set; }
 
         [DisplayName("Описание")]
         public string Description { get; set; }
-
+        
+        [DecimalPrecision(12, 2)]
         [DisplayName("Цена")]
-        [Column(TypeName = "money")]
         public decimal Price { get; set; }
 
         [Browsable(false)]

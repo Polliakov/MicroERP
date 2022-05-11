@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
+using DataBase.Attributes;
 
 namespace DataBase.Entities
 {
@@ -13,9 +13,11 @@ namespace DataBase.Entities
         [Browsable(false)]
         public int UserId { get; set; }
 
-        [Column(TypeName = "money")]
+        [DecimalPrecision(14, 2)]
+        [DisplayName("Сумма")]
         public decimal Total { get; set; }
 
+        [DisplayName("Время")]
         public DateTime Timestamp { get; set; }
 
         public virtual List<ProductSell> Items { get; set; } = new List<ProductSell>();

@@ -19,10 +19,9 @@ namespace DesktopUI
                 lblWrongPassword.Visible = false;
 
                 var user = AuthenticatedUser.Authenticate(tbLogin.Text, tbPassword.Text);
-                CurrentUser.User = user;
                 
                 Hide();
-                new MainForm().Show();
+                new MainForm(user).Show();
             }
             catch (UserIdentificationException)
             {

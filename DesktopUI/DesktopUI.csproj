@@ -70,12 +70,19 @@
       <DependentUpon>FormTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\FormTabs\FormTab.cs" />
+    <Compile Include="CustomControls\SideMenu\SideMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\SideMenu\SideMenu.Designer.cs">
+      <DependentUpon>SideMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmbeddedForms\DataForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EmbeddedForms\DataForm.Designer.cs">
       <DependentUpon>DataForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmbeddedForms\EmbaddedFormFactory.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\FormTabs\FormTabControl.resx">
       <DependentUpon>FormTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\SideMenu\SideMenu.resx">
+      <DependentUpon>SideMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedForms\DataForm.resx">
       <DependentUpon>DataForm.cs</DependentUpon>

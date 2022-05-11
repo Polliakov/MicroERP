@@ -18,7 +18,7 @@ namespace MicroERPTests
         {
             using (var db = new MicroERPContext())
             {
-                UsersTestData.TryCreateTestCashier();
+                UsersTestData.TryCreateTestUsers();
                 AuthenticatedUser.Authenticate(UsersTestData.Login, UsersTestData.Password);
             }
         }
@@ -28,7 +28,7 @@ namespace MicroERPTests
         {
             using(var db = new MicroERPContext())
             {
-                UsersTestData.TryCreateTestCashier();
+                UsersTestData.TryCreateTestUsers();
                 bool authResult1 = true;
                 bool authResult2 = true;
 

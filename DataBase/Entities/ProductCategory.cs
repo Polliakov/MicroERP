@@ -10,6 +10,7 @@ namespace DataBase.Entities
         public int Id { get; set; }
 
         [Required]
+        [DisplayName("Название")]
         public string Name { get; set; }
 
         [Browsable(false)]

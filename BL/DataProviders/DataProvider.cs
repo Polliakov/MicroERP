@@ -1,20 +1,17 @@
-﻿using System;
+﻿using DataBase.Contexts;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataBase.Contexts;
-using DataBase.Entities;
 
 namespace BL.DataProviders
 {
     public class DataProvider<TEntity>
         where TEntity : class
     {
-        public DataProvider(DbSet<TEntity> set)
+        private readonly MicroERPContext db = MicroERPContextSingleton.Instanse;
+
+        public DataProvider()
         {
-            this.set = set;
+            set = db.Set<TEntity>();
         }
 
         private readonly DbSet<TEntity> set;

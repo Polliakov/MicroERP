@@ -1,4 +1,5 @@
-﻿using DataBase.Entities;
+﻿using DataBase.Attributes;
+using DataBase.Entities;
 using System.Data.Entity;
 
 namespace DataBase.Contexts
@@ -19,5 +20,10 @@ namespace DataBase.Contexts
         public DbSet<ProductInPicking> ProductsInPickings { get; set; }
         public DbSet<ProductInWriteOf> ProductsInWriteOfs { get; set; }
         public DbSet<ProductInWarehouse> ProductsInWarehouses { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
+        }
     }
 }

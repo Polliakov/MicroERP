@@ -60,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\DecimalPrecisionAttribute.cs" />
+    <Compile Include="Attributes\DecimalPrecisionAttributeConvention.cs" />
     <Compile Include="Contexts\MicroERPContext.cs" />
     <Compile Include="Contexts\MicroERPContextSingleton.cs" />
     <Compile Include="Entities\Cheque.cs" />
@@ -74,9 +76,9 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserRole.cs" />
     <Compile Include="Entities\Warehouse.cs" />
-    <Compile Include="Migrations\202205081844563_test2.cs" />
-    <Compile Include="Migrations\202205081844563_test2.designer.cs">
-      <DependentUpon>202205081844563_test2.cs</DependentUpon>
+    <Compile Include="Migrations\202205111229388_test22.cs" />
+    <Compile Include="Migrations\202205111229388_test22.designer.cs">
+      <DependentUpon>202205111229388_test22.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,8 +88,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202205081844563_test2.resx">
-      <DependentUpon>202205081844563_test2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205111229388_test22.resx">
+      <DependentUpon>202205111229388_test22.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

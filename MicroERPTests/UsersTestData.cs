@@ -10,14 +10,18 @@ namespace MicroERPTests
     {
         public const string Login = "20000000000";
         public const string Password = "qwe123";
+        public const string AdminLogin = "10000000000";
+        public const string AdminPassword = "123";
 
         private static bool isCashierCreated = false;
+        private static bool isAdminCreated = false;
 
-        public static void TryCreateTestCashier()
+        public static void TryCreateTestUsers()
         {
             using (var db = new MicroERPContext())
             {
-                if (!isCashierCreated && db.Users.Count(u => u.PhoneNumber == Login) == 0)
+                if (!isCashierCreated && 
+                    db.Users.FirstOrDefault(u => u.PhoneNumber == Login) is null)
                 {
                     db.Users.Add(new User
                     {
@@ -29,6 +33,21 @@ namespace MicroERPTests
                     });
                     db.SaveChanges();
                     isCashierCreated = true;
+                }
+                if (!isAdminCreated && 
+                    db.Users.FirstOrDefault(u => u.PhoneNumber == AdminLogin) is null)
+                {
+                    db.Users.Add(new User
+                    {
+                        Name = "TestAdminName",
+                        Surname = "TestAdminSurname",
+                        Patronymic = "TestAdminPatronymic",
+                        PhoneNumber = AdminLogin,
+                        Password = PasswordHash.Calculate(AdminPassword),
+                        Role = UserRole.Administrator,
+                    });
+                    db.SaveChanges();
+                    isAdminCreated = true;
                 }
             }           
         }
