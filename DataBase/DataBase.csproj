@@ -65,6 +65,7 @@
     <Compile Include="Contexts\MicroERPContext.cs" />
     <Compile Include="Contexts\MicroERPContextSingleton.cs" />
     <Compile Include="Entities\Cheque.cs" />
+    <Compile Include="Entities\IProductEntry.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ProductCategory.cs" />
     <Compile Include="Entities\ProductInPicking.cs" />

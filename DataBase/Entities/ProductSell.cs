@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataBase.Entities
 {
-    public class ProductSell
+    public class ProductSell : IProductEntry
     {
         [Key]
         [Column(Order = 1)]

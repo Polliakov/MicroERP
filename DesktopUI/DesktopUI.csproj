@@ -62,6 +62,12 @@
     <Compile Include="AuthenticationForm.Designer.cs">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\EntitySelector\EntitySelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\EntitySelector\EntitySelector.Designer.cs">
+      <DependentUpon>EntitySelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\FormTabs\TabState.cs" />
     <Compile Include="CustomControls\FormTabs\FormTabControl.cs">
       <SubType>UserControl</SubType>
@@ -70,11 +76,42 @@
       <DependentUpon>FormTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\FormTabs\FormTab.cs" />
+    <Compile Include="CustomControls\ProductEntryList\ProductEntryList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ProductEntryList\ProductEntryList.Designer.cs">
+      <DependentUpon>ProductEntryList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ProductEntryList\ProductEntryListItem.cs" />
     <Compile Include="CustomControls\SideMenu\SideMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CustomControls\SideMenu\SideMenu.Designer.cs">
       <DependentUpon>SideMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmbeddedForms\AddingForms\AddProductCategoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmbeddedForms\AddingForms\AddProductCategoryForm.Designer.cs">
+      <DependentUpon>AddProductCategoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmbeddedForms\AddingForms\AddProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmbeddedForms\AddingForms\AddProductForm.Designer.cs">
+      <DependentUpon>AddProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmbeddedForms\AddingForms\AddUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmbeddedForms\AddingForms\AddUserForm.Designer.cs">
+      <DependentUpon>AddUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmbeddedForms\AddingForms\AddWarehouseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmbeddedForms\AddingForms\AddWarehouseForm.Designer.cs">
+      <DependentUpon>AddWarehouseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EmbeddedForms\DataForm.cs">
       <SubType>Form</SubType>
@@ -83,6 +120,36 @@
       <DependentUpon>DataForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EmbeddedForms\EmbaddedFormFactory.cs" />
+    <Compile Include="EmbeddedForms\ProductOperationsForms\CreateCheqeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmbeddedForms\ProductOperationsForms\CreateCheqeForm.Designer.cs">
+      <DependentUpon>CreateCheqeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmbeddedForms\ProductOperationsForms\CreatePickingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmbeddedForms\ProductOperationsForms\CreatePickingForm.Designer.cs">
+      <DependentUpon>CreatePickingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmbeddedForms\ProductOperationsForms\CreateWriteOfForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmbeddedForms\ProductOperationsForms\CreateWriteOfForm.Designer.cs">
+      <DependentUpon>CreateWriteOfForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmbeddedForms\ProductOperationsForms\ProductOperationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmbeddedForms\ProductOperationsForms\ProductOperationForm.Designer.cs">
+      <DependentUpon>ProductOperationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmbeddedForms\SelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmbeddedForms\SelectorForm.Designer.cs">
+      <DependentUpon>SelectorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,14 +161,23 @@
     <EmbeddedResource Include="AuthenticationForm.resx">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\EntitySelector\EntitySelector.resx">
+      <DependentUpon>EntitySelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\FormTabs\FormTabControl.resx">
       <DependentUpon>FormTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\ProductEntryList\ProductEntryList.resx">
+      <DependentUpon>ProductEntryList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\SideMenu\SideMenu.resx">
       <DependentUpon>SideMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedForms\DataForm.resx">
       <DependentUpon>DataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedForms\ProductOperationsForms\ProductOperationForm.resx">
+      <DependentUpon>ProductOperationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
