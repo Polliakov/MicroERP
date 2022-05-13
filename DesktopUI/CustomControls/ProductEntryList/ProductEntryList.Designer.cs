@@ -1,5 +1,4 @@
-﻿
-namespace DesktopUI.CustomControls.ProductEntryList
+﻿namespace DesktopUI.CustomControls.ProductEntryList
 {
     partial class ProductEntryList
     {
@@ -37,7 +36,7 @@ namespace DesktopUI.CustomControls.ProductEntryList
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.Name = "ProductEntryList";
-            this.Size = new System.Drawing.Size(344, 248);
+            this.Size = new System.Drawing.Size(344, 419);
             this.ResumeLayout(false);
 
         }

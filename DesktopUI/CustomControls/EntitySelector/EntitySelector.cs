@@ -20,8 +20,9 @@ namespace DesktopUI.CustomControls.EntitySelector
 
         private readonly DataProvider<TEntity> dataProvider = new DataProvider<TEntity>();
 
-        private void DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1) return;
             var entity = (TEntity)dataGridView.Rows[e.RowIndex].DataBoundItem;
             EntitySelected.Invoke(entity);
         }

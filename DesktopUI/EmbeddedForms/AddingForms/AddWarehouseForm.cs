@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using BL.DataProviders;
+using DataBase.Entities;
+using DesktopUI.Validation;
 
 namespace DesktopUI.EmbeddedForms.AddingForms
 {
@@ -15,6 +11,36 @@ namespace DesktopUI.EmbeddedForms.AddingForms
         public AddWarehouseForm()
         {
             InitializeComponent();
+        }
+
+        private readonly DataProvider<Warehouse> dataProvider = new DataProvider<Warehouse>();
+
+        private void BtnEnter_Click(object sender, EventArgs e)
+        {
+            if (!tbAddress.Required("Адрес"))
+                return;
+
+            var warehouse = new Warehouse
+            {
+                Address = tbAddress.Text,
+                Name = string.IsNullOrWhiteSpace(tbName.Text) ? null : tbName.Text
+            };
+
+            try
+            {
+                dataProvider.Create(warehouse);
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ClearFields()
+        {
+            tbAddress.Text = string.Empty;
+            tbName.Text = string.Empty;
         }
     }
 }

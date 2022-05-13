@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataBase.Entities;
+using DesktopUI.CustomControls.ProductEntryListSelector;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,12 @@ namespace DesktopUI.EmbeddedForms.ProductOperationsForms
         public CreateCheqeForm()
         {
             InitializeComponent();
+            productEntryListSelector.Dock = DockStyle.Fill;
+            productEntryListSelector.SelectorTitle = "Товары";
+            productEntryListSelector.ListTitle = "Чек";
+            pnlProductEntryListSelector.Controls.Add(productEntryListSelector);
         }
+
+        private readonly ProductEntryListSelector<ProductSell> productEntryListSelector = new ProductEntryListSelector<ProductSell>();
     }
 }

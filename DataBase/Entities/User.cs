@@ -11,18 +11,19 @@ namespace DataBase.Entities
         public int Id { get; set; }
 
         [Required]
-        [DisplayName("Имя")]
-        public string Name { get; set; }
-
-        [Required]
         [DisplayName("Фамилия")]
         public string Surname { get; set; }
+
+        [Required]
+        [DisplayName("Имя")]
+        public string Name { get; set; }
 
         [DisplayName("Отчество")]
         public string Patronymic { get; set; }
 
         [Required]
         [Phone]
+        [MinLength(6)]
         [MaxLength(11)]
         [DisplayName("Телефон")]
         public string PhoneNumber { get; set; }

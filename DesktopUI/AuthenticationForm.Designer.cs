@@ -94,7 +94,7 @@ namespace DesktopUI
             // btnEnter
             // 
             this.btnEnter.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnEnter.Location = new System.Drawing.Point(49, 191);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(155, 27);
@@ -127,6 +127,7 @@ namespace DesktopUI
             // 
             // AuthenticationForm
             // 
+            this.AcceptButton = this.btnEnter;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;

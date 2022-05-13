@@ -16,6 +16,12 @@ namespace BL.DataProviders
 
         private readonly DbSet<TEntity> set;
 
+        public void Create(TEntity entity)
+        {
+            set.Add(entity);
+            db.SaveChanges();
+        }
+
         public DbSet<TEntity> GetDbSet() => set;
         public DbSet<TEntity> GetDbSet(List<Filter<TEntity>> filters)
         {

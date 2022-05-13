@@ -1,11 +1,6 @@
-﻿using System;
+﻿using DataBase.Entities;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DesktopUI.CustomControls.ProductEntryList
@@ -15,6 +10,30 @@ namespace DesktopUI.CustomControls.ProductEntryList
         public ProductEntryList()
         {
             InitializeComponent();
+        }
+
+        public List<ProductEntryListItem> Items { get; } = new List<ProductEntryListItem>();
+
+        public void Add(IProductEntry productEntry)
+        {
+            var existsItem = Items.FirstOrDefault(i => i.ProductEntry.Product == productEntry.Product);
+            if (!(existsItem is null))
+            {
+                existsItem.IncreaseCount(1);
+                return;
+            }
+
+            var item = new ProductEntryListItem(productEntry, this);
+            item.Close += Remove;
+            Items.Add(item);
+        }
+
+        public IEnumerable<IProductEntry> GetProductEntries() => Items.Select(item => item.ProductEntry);
+
+        private void Remove(ProductEntryListItem item)
+        {
+            Items.Remove(item);
+            item.Dispose();
         }
     }
 }

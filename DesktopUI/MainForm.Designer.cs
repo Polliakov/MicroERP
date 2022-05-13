@@ -29,26 +29,28 @@ namespace DesktopUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.formTabControl = new DesktopUI.CustomControls.FormTabControl();
             this.sideMenu = new DesktopUI.CustomControls.SideMenu.SideMenu();
+            this.formTabControl = new DesktopUI.CustomControls.FormTabControl();
             this.SuspendLayout();
-            // 
-            // formTabControl
-            // 
-            this.formTabControl.Dock = System.Windows.Forms.DockStyle.Right;
-            this.formTabControl.Location = new System.Drawing.Point(275, 0);
-            this.formTabControl.Name = "formTabControl";
-            this.formTabControl.Size = new System.Drawing.Size(909, 661);
-            this.formTabControl.TabIndex = 4;
             // 
             // sideMenu
             // 
             this.sideMenu.AutoScroll = true;
-            this.sideMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sideMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.sideMenu.Location = new System.Drawing.Point(0, 0);
             this.sideMenu.Name = "sideMenu";
-            this.sideMenu.Size = new System.Drawing.Size(275, 661);
+            this.sideMenu.Size = new System.Drawing.Size(226, 661);
             this.sideMenu.TabIndex = 5;
+            // 
+            // formTabControl
+            // 
+            this.formTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.formTabControl.Location = new System.Drawing.Point(232, 0);
+            this.formTabControl.Name = "formTabControl";
+            this.formTabControl.Size = new System.Drawing.Size(952, 661);
+            this.formTabControl.TabIndex = 4;
             // 
             // MainForm
             // 
@@ -57,8 +59,10 @@ namespace DesktopUI
             this.ClientSize = new System.Drawing.Size(1184, 661);
             this.Controls.Add(this.sideMenu);
             this.Controls.Add(this.formTabControl);
+            this.MinimumSize = new System.Drawing.Size(1200, 700);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.ResumeLayout(false);
 
         }
