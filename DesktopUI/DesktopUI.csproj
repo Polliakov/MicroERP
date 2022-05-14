@@ -171,6 +171,12 @@
     <EmbeddedResource Include="CustomControls\SideMenu\SideMenu.resx">
       <DependentUpon>SideMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedForms\AddingForms\AddProductCategoryForm.resx">
+      <DependentUpon>AddProductCategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedForms\AddingForms\AddProductForm.resx">
+      <DependentUpon>AddProductForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedForms\AddingForms\AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </EmbeddedResource>

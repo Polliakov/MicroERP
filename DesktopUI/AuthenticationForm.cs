@@ -1,6 +1,7 @@
 ﻿using BL.Security;
 using System;
 using System.Windows.Forms;
+using DesktopUI.Validation;
 
 namespace DesktopUI
 {
@@ -13,6 +14,10 @@ namespace DesktopUI
 
         private void BtnEnter_Click(object sender, EventArgs e)
         {
+            if (!tbLogin.Required("Номер телефона") ||
+                !tbPassword.Required("Пароль"))
+                return;
+
             try
             {
                 lblWrongLogin.Visible = false;

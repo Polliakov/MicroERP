@@ -51,7 +51,7 @@ namespace DesktopUI.EmbeddedForms.AddingForms
             this.btnEnter.Location = new System.Drawing.Point(83, 339);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(75, 23);
-            this.btnEnter.TabIndex = 11;
+            this.btnEnter.TabIndex = 14;
             this.btnEnter.Text = "Добавить";
             this.btnEnter.UseVisualStyleBackColor = true;
             this.btnEnter.Click += new System.EventHandler(this.BtnEnter_Click);
@@ -90,7 +90,7 @@ namespace DesktopUI.EmbeddedForms.AddingForms
             this.tbName.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(216, 20);
-            this.tbName.TabIndex = 7;
+            this.tbName.TabIndex = 9;
             // 
             // label1
             // 
@@ -119,7 +119,7 @@ namespace DesktopUI.EmbeddedForms.AddingForms
             this.tbPatronymic.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
             this.tbPatronymic.Name = "tbPatronymic";
             this.tbPatronymic.Size = new System.Drawing.Size(216, 20);
-            this.tbPatronymic.TabIndex = 12;
+            this.tbPatronymic.TabIndex = 10;
             // 
             // label5
             // 
@@ -149,11 +149,12 @@ namespace DesktopUI.EmbeddedForms.AddingForms
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(216, 20);
-            this.tbPassword.TabIndex = 16;
+            this.tbPassword.TabIndex = 12;
             // 
             // cbRole
             // 
             this.cbRole.FormattingEnabled = true;
+            this.cbRole.ItemHeight = 13;
             this.cbRole.Items.AddRange(new object[] {
             "Кассир",
             "Администратор"});
@@ -161,7 +162,7 @@ namespace DesktopUI.EmbeddedForms.AddingForms
             this.cbRole.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(217, 21);
-            this.cbRole.TabIndex = 18;
+            this.cbRole.TabIndex = 13;
             this.cbRole.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CbRole_KeyPress);
             // 
             // label7
@@ -180,7 +181,7 @@ namespace DesktopUI.EmbeddedForms.AddingForms
             this.tbPhoneNumber.MaxLength = 11;
             this.tbPhoneNumber.Name = "tbPhoneNumber";
             this.tbPhoneNumber.Size = new System.Drawing.Size(216, 20);
-            this.tbPhoneNumber.TabIndex = 14;
+            this.tbPhoneNumber.TabIndex = 11;
             this.tbPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbPhoneNumber_KeyPress);
             // 
             // AddUserForm

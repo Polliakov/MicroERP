@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BL.DataProviders;
+﻿using BL.DataProviders;
 using BL.Security;
 using DataBase.Entities;
 using DesktopUI.Validation;
+using System;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace DesktopUI.EmbeddedForms.AddingForms
 {

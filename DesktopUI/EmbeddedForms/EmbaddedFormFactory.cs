@@ -11,6 +11,7 @@ namespace DesktopUI.EmbeddedForms
     {
         ChequeDataForm,
         ProductDataForm,
+        ProductCategoryDataForm,
         ProductPickingDataForm,
         ProductWriteOfDataForm,
         UserDataForm,
@@ -30,10 +31,13 @@ namespace DesktopUI.EmbeddedForms
         {
             switch (formType)
             {
+                // DataForms
                 case EmbaddedForm.ChequeDataForm:
                     return new DataForm<Cheque>();
                 case EmbaddedForm.ProductDataForm: 
                     return new DataForm<Product>();
+                case EmbaddedForm.ProductCategoryDataForm:
+                    return new DataForm<ProductCategory>();
                 case EmbaddedForm.ProductPickingDataForm:
                     return new DataForm<ProductPicking>();
                 case EmbaddedForm.ProductWriteOfDataForm:
@@ -42,8 +46,16 @@ namespace DesktopUI.EmbeddedForms
                     return new DataForm<User>();
                 case EmbaddedForm.WarehouseDataForm:
                     return new DataForm<Warehouse>();
+
+                // ProductOperationsForms
                 case EmbaddedForm.CreateChequeForm:
                     return new CreateCheqeForm();
+
+                // AddingForms
+                case EmbaddedForm.AddProductForm:
+                    return new AddProductForm();
+                case EmbaddedForm.AddProductCategoryForm:
+                    return new AddProductCategoryForm();
                 case EmbaddedForm.AddWarehouseForm:
                     return new AddWarehouseForm();
                 case EmbaddedForm.AddUserForm:

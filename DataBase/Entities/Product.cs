@@ -14,12 +14,12 @@ namespace DataBase.Entities
         [DisplayName("Наименование")]
         public string Name { get; set; }
 
-        [DisplayName("Описание")]
-        public string Description { get; set; }
-        
         [DecimalPrecision(12, 2)]
         [DisplayName("Цена")]
         public decimal Price { get; set; }
+
+        [DisplayName("Описание")]
+        public string Description { get; set; }
 
         [Browsable(false)]
         public int CategoryId { get; set; }
