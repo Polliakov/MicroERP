@@ -20,7 +20,7 @@ namespace DataBase.Entities
         [DisplayName("Время")]
         public DateTime Timestamp { get; set; }
 
-        public virtual List<ProductSell> Items { get; set; } = new List<ProductSell>();
+        public virtual List<ProductInWriteOf> Items { get; set; } = new List<ProductInWriteOf>();
         public User User { get; set; }
     }
 }

@@ -23,6 +23,8 @@ namespace DesktopUI.CustomControls.ProductEntryListSelector
 
         public IEnumerable<TEntry> GetEntries() => productEntryList.GetProductEntries().Cast<TEntry>();
 
+        public void Clear() => productEntryList.Clear();
+
         private void AddEntryToList(Product product)
         {
             var entry = (IProductEntry)(new TEntry());

@@ -1,10 +1,6 @@
 ﻿using DataBase.Contexts;
 using DataBase.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BL.Security
 {
@@ -12,10 +8,6 @@ namespace BL.Security
     {
         public UserRole Role { get => user.Role; }
         public User User { get => user; }
-        //public string Name { get => user.Name; }
-        //public string Surname { get => user.Surname; }
-        //public string Patronymic { get => user.Patronymic; }
-        //public string PhoneNumber { get => user.PhoneNumber; }
 
         private readonly User user;
 
@@ -31,9 +23,11 @@ namespace BL.Security
                 var user = db.Users.FirstOrDefault(u => u.PhoneNumber == login);
                 if (user is null)
                     throw new UserIdentificationException();
+
                 var passwordHash = PasswordHash.Calculate(password);
                 if (!PasswordsAreEqual(user.Password, passwordHash))
                     throw new UserAuthenticationException();
+
                 return new AuthenticatedUser(user);
             }
         }

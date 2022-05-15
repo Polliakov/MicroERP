@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataBase.Entities
 {
@@ -21,6 +22,7 @@ namespace DataBase.Entities
         [DisplayName("Отчество")]
         public string Patronymic { get; set; }
 
+        [Index(IsUnique = true)]
         [Required]
         [Phone]
         [MinLength(6)]

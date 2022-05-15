@@ -4,6 +4,7 @@ using System;
 using System.Windows.Forms;
 using DesktopUI.EmbeddedForms.ProductOperationsForms;
 using DesktopUI.EmbeddedForms.AddingForms;
+using BL.Security;
 
 namespace DesktopUI.EmbeddedForms
 {
@@ -27,6 +28,13 @@ namespace DesktopUI.EmbeddedForms
 
     public class EmbaddedFormFactory
     {
+        public EmbaddedFormFactory(AuthenticatedUser currentUser)
+        {
+            this.currentUser = currentUser;
+        }
+
+        private AuthenticatedUser currentUser;
+
         public Form New(EmbaddedForm formType)
         {
             switch (formType)
@@ -48,6 +56,8 @@ namespace DesktopUI.EmbeddedForms
                     return new DataForm<Warehouse>();
 
                 // ProductOperationsForms
+                case EmbaddedForm.CreatePickingForm:
+                    return new CreatePickingForm(currentUser);
                 case EmbaddedForm.CreateChequeForm:
                     return new CreateCheqeForm();
 

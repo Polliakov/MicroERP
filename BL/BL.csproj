@@ -58,6 +58,8 @@
     <Compile Include="Security\PasswordHash.cs" />
     <Compile Include="Security\UserAuthenticationException.cs" />
     <Compile Include="Security\UserIdentificationException.cs" />
+    <Compile Include="Services\CreatePickingService.cs" />
+    <Compile Include="Services\WarehouseEntryService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataBase\DataBase.csproj">
@@ -71,7 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

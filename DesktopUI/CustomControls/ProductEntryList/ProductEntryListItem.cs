@@ -10,6 +10,9 @@ namespace DesktopUI.CustomControls.ProductEntryList
         public ProductEntryListItem(IProductEntry productEntry, Control parent)
         {
             ProductEntry = productEntry;
+            if (ProductEntry.Count < 1)
+                ProductEntry.Count = 1;
+
             InitializeComponents(parent);
             nmcCount.ValueChanged += NmcCount_ValueChanged;
             btnClose.Click += (_, e) => Close.Invoke(this);
@@ -72,8 +75,7 @@ namespace DesktopUI.CustomControls.ProductEntryList
             nmcCount.Size = new Size(50, 21);
             nmcCount.TabIndex = 1;
             nmcCount.TextAlign = HorizontalAlignment.Right;
-            int startValue = ProductEntry.Count == 0 ? 1 : ProductEntry.Count;
-            nmcCount.Value = new decimal(new int[] { startValue, 0, 0, 0 });
+            nmcCount.Value = new decimal(new int[] { ProductEntry.Count, 0, 0, 0 });
             nmcCount.Parent = btnItem;
             nmcCount.Location = new Point(btnItem.Size.Width - 80, 1);
 

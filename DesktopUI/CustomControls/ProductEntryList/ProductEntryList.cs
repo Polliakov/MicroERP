@@ -30,6 +30,12 @@ namespace DesktopUI.CustomControls.ProductEntryList
 
         public IEnumerable<IProductEntry> GetProductEntries() => Items.Select(item => item.ProductEntry);
 
+        public void Clear()
+        {
+            Items.ForEach(item => item.Dispose());
+            Items.Clear();
+        }
+
         private void Remove(ProductEntryListItem item)
         {
             Items.Remove(item);

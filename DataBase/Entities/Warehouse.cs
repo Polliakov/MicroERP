@@ -17,5 +17,7 @@ namespace DataBase.Entities
         public string Address { get; set; }
 
         public virtual List<ProductInWarehouse> Products { get; set; } = new List<ProductInWarehouse>();
+
+        public override string ToString() => (Name ?? "Склад") + " " + Address;
     }
 }

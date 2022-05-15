@@ -13,12 +13,13 @@ namespace DesktopUI
         public MainForm(AuthenticatedUser currentUser)
         {
             this.currentUser = currentUser;
+            embaddedFormFactory = new EmbaddedFormFactory(currentUser);
             InitializeComponent();
             AddSideMenuItems();
             sideMenu.ItemClick += SideMenu_ItemClick;
         }
 
-        private readonly EmbaddedFormFactory embaddedFormFactory = new EmbaddedFormFactory();
+        private readonly EmbaddedFormFactory embaddedFormFactory;
         private readonly AuthenticatedUser currentUser;
 
         private void AddSideMenuItems()
@@ -38,6 +39,7 @@ namespace DesktopUI
             sideMenu.AddItem("Новая категория", EmbaddedForm.AddProductCategoryForm);
             sideMenu.AddItem("Новый пользователь", EmbaddedForm.AddUserForm);
             sideMenu.AddItem("Новый склад", EmbaddedForm.AddWarehouseForm);
+            sideMenu.AddItem("Новая поставка", EmbaddedForm.CreatePickingForm);
 
         }
 

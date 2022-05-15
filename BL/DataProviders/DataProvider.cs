@@ -16,6 +16,10 @@ namespace BL.DataProviders
 
         private readonly DbSet<TEntity> set;
 
+        public void Add(TEntity entity) => set.Add(entity);
+
+        public void Save() => db.SaveChanges();
+
         public void Create(TEntity entity)
         {
             set.Add(entity);
