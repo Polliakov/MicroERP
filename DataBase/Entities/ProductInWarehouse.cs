@@ -16,7 +16,7 @@ namespace DataBase.Entities
         [Browsable(false)]
         public int WarehouseID { get; set; }
 
-        [Range(1, int.MaxValue)]
+        [Range(0, int.MaxValue)]
         public int Count { get; set; }
 
         public Product Product { get; set; }

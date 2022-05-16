@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace DesktopUI.CustomControls.EntitySelector
@@ -12,14 +13,22 @@ namespace DesktopUI.CustomControls.EntitySelector
     {
         public EntitySelector(IDataProvider<TEntity> dataProvider)
         {
-            var set = dataProvider.GetData();
-            var list = (IList<TEntity>)set.ToListAsync().Result;
+            data = dataProvider.GetData();
 
             InitializeComponent();
-            dataGridView.DataSource = new BindingList<TEntity>(list);
+            RefreshData();
         }
 
+        private readonly IQueryable<TEntity> data;
+
         public event Action<TEntity> EntitySelected;
+
+        public void RefreshData()
+        {
+            var list = (IList<TEntity>)data.ToListAsync().Result;
+            dataGridView.DataSource = new BindingList<TEntity>(list);
+            dataGridView.ClearSelection();
+        }
 
         private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {

@@ -38,6 +38,7 @@ namespace DesktopUI.EmbeddedForms.ProductOperationsForms
             catch (WarehouseWriteOfException ex)
             {
                 string message = $"Невозможно продать \"{ex.Product}\" в количестве {ex.ProductCount}." +
+                                 Environment.NewLine +
                                  $"Остаток на складе \"{ex.Warehouse}\" - {ex.LeftInWarehouse}.";
                 MessageBox.Show(message, "Ошибка склада");
             }

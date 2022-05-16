@@ -24,13 +24,20 @@ namespace BL.Services
 
         public void Create(IEnumerable<ProductSell> productSells)
         {
-            warehouseService.AddEntries(productSells, warehouse);
+            warehouseService.WriteOfEntries(productSells, warehouse);
             CreateCheque(productSells);
         }
 
         private void CreateCheque(IEnumerable<ProductSell> productSells)
         {
-            throw new NotImplementedException();
+            var total = productSells.Aggregate(0m, (acc, ps) => acc += ps.Product.Price * ps.Count);
+            dataProvider.Create(new Cheque
+            {
+                Items = productSells.ToList(),
+                Total = total,
+                UserId = user.User.Id,
+                Timestamp = DateTime.Now,
+            });
         }
     }
 }

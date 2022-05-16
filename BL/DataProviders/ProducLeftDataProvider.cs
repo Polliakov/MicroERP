@@ -21,7 +21,7 @@ namespace BL.DataProviders
         public IQueryable<ProductLeftModel> GetData()
         {
             return db.ProductsInWarehouses
-                   .Where(pw => pw.Warehouse.Id == warehouse.Id)
+                   .Where(pw => pw.Warehouse.Id == warehouse.Id && pw.Count > 0)
                    .Select(pw => new ProductLeftModel
                    {
                        Name = pw.Product.Name,

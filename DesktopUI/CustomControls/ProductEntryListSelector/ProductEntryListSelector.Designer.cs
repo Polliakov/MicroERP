@@ -30,6 +30,7 @@
         {
             this.pnlEntitySelector = new System.Windows.Forms.Panel();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
+            this.btnRefreshData = new System.Windows.Forms.Button();
             this.lblSelector = new System.Windows.Forms.Label();
             this.lblEntryList = new System.Windows.Forms.Label();
             this.productEntryList = new DesktopUI.CustomControls.ProductEntryList.ProductEntryList();
@@ -58,6 +59,7 @@
             // 
             // splitContainer.Panel1
             // 
+            this.splitContainer.Panel1.Controls.Add(this.btnRefreshData);
             this.splitContainer.Panel1.Controls.Add(this.lblSelector);
             this.splitContainer.Panel1.Controls.Add(this.pnlEntitySelector);
             // 
@@ -69,27 +71,42 @@
             this.splitContainer.SplitterDistance = 479;
             this.splitContainer.TabIndex = 4;
             // 
+            // btnRefreshData
+            // 
+            this.btnRefreshData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefreshData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRefreshData.FlatAppearance.BorderSize = 0;
+            this.btnRefreshData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefreshData.Location = new System.Drawing.Point(453, 8);
+            this.btnRefreshData.Name = "btnRefreshData";
+            this.btnRefreshData.Size = new System.Drawing.Size(20, 20);
+            this.btnRefreshData.TabIndex = 5;
+            this.btnRefreshData.UseVisualStyleBackColor = true;
+            // 
             // lblSelector
             // 
-            this.lblSelector.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblSelector.AutoSize = true;
+            this.lblSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblSelector.Location = new System.Drawing.Point(217, 12);
+            this.lblSelector.Location = new System.Drawing.Point(29, 12);
+            this.lblSelector.Margin = new System.Windows.Forms.Padding(29, 0, 3, 0);
             this.lblSelector.Name = "lblSelector";
-            this.lblSelector.Size = new System.Drawing.Size(45, 16);
+            this.lblSelector.Size = new System.Drawing.Size(418, 16);
             this.lblSelector.TabIndex = 4;
-            this.lblSelector.Text = "label1";
+            this.lblSelector.Text = "Заголовок";
+            this.lblSelector.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblEntryList
             // 
-            this.lblEntryList.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblEntryList.AutoSize = true;
+            this.lblEntryList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEntryList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblEntryList.Location = new System.Drawing.Point(121, 12);
+            this.lblEntryList.Location = new System.Drawing.Point(3, 12);
             this.lblEntryList.Name = "lblEntryList";
-            this.lblEntryList.Size = new System.Drawing.Size(45, 16);
+            this.lblEntryList.Size = new System.Drawing.Size(281, 16);
             this.lblEntryList.TabIndex = 5;
-            this.lblEntryList.Text = "label1";
+            this.lblEntryList.Text = "Заголовок";
+            this.lblEntryList.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // productEntryList
             // 
@@ -111,9 +128,7 @@
             this.Name = "ProductEntryListSelector";
             this.Size = new System.Drawing.Size(770, 405);
             this.splitContainer.Panel1.ResumeLayout(false);
-            this.splitContainer.Panel1.PerformLayout();
             this.splitContainer.Panel2.ResumeLayout(false);
-            this.splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -127,5 +142,6 @@
         private ProductEntryList.ProductEntryList productEntryList;
         private System.Windows.Forms.Label lblSelector;
         private System.Windows.Forms.Label lblEntryList;
+        private System.Windows.Forms.Button btnRefreshData;
     }
 }

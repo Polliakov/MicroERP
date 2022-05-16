@@ -31,5 +31,6 @@ namespace DataBase.Entities
         public virtual List<ProductInPicking> InPickings { get; set; } = new List<ProductInPicking>();
         public virtual List<ProductInWriteOf> InWriteOfs { get; set; } = new List<ProductInWriteOf>();
 
+        public override string ToString() => Name;
     }
 }
