@@ -62,6 +62,8 @@ namespace DesktopUI.EmbeddedForms
                     return new CreatePickingForm(currentUser);
                 case EmbaddedForm.CreateChequeForm:
                     return new CreateCheqeForm(currentUser, warehouse);
+                case EmbaddedForm.CreateWriteOfForm:
+                    return new CreateWriteOfForm(currentUser, warehouse);
 
                 // AddingForms
                 case EmbaddedForm.AddProductForm:

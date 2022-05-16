@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Linq;
+﻿using BL.DataProviders;
+using BL.Models;
 using DataBase.Entities;
 using DesktopUI.CustomControls.EntitySelector;
-using BL.DataProviders;
-using BL.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace DesktopUI.CustomControls.ProductEntryListSelector
 {
@@ -15,41 +15,43 @@ namespace DesktopUI.CustomControls.ProductEntryListSelector
         public ProductEntryListSelector()
         {
             var dataProvider = new DataProvider<Product>();
-            var entitySelector = new EntitySelector<Product>(dataProvider);
-
-            btnRefreshData.BackgroundImage = (System.Drawing.Bitmap)Properties.Resources.ResourceManager.GetObject("RefreshIcon");
-
-            pnlEntitySelector.Controls.Add(entitySelector);
+            var entitySelector = new EntitySelector<Product>(dataProvider)
+            {
+                Dock = DockStyle.Fill,
+            };
             entitySelector.EntitySelected += AddEntryToList;
-            Clearing += entitySelector.RefreshData;
-            btnRefreshData.Click += (_, e) => entitySelector.RefreshData();
+
+            InitializeComponent();
+            Initialize(entitySelector);
+            pnlEntitySelector.Controls.Add(entitySelector);
         }
 
         public ProductEntryListSelector(Warehouse warehouse)
         {
             var dataProvider = new ProducLeftDataProvider(warehouse);
-            var entitySelector = new EntitySelector<ProductLeftModel>(dataProvider);
+            var entitySelector = new EntitySelector<ProductLeftModel>(dataProvider)
+            {
+                Dock = DockStyle.Fill,
+            };
+            entitySelector.EntitySelected += AddEntryToList;
 
             InitializeComponent();
-            btnRefreshData.BackgroundImage = (System.Drawing.Bitmap)Properties.Resources.ResourceManager.GetObject("RefreshIcon");
-
+            Initialize(entitySelector);
             pnlEntitySelector.Controls.Add(entitySelector);
-            entitySelector.EntitySelected += AddEntryToList;
-            Clearing += entitySelector.RefreshData;
-            btnRefreshData.Click += (_, e) => entitySelector.RefreshData();           
         }
 
         public string ListTitle { get => lblEntryList.Text; set => lblEntryList.Text = value; }
         public string SelectorTitle { get => lblSelector.Text; set => lblSelector.Text = value; }
 
+        public event Action ListChanged;
         private event Action Clearing;
 
         public IEnumerable<TEntry> GetEntries() => productEntryList.GetProductEntries().Cast<TEntry>();
 
-        public void Clear() 
+        public void Clear()
         {
             productEntryList.Clear();
-            Clearing?.Invoke();
+            Clearing.Invoke();
         }
 
         private void AddEntryToList(Product product)
@@ -66,6 +68,14 @@ namespace DesktopUI.CustomControls.ProductEntryListSelector
             entry.Count = 1;
             entry.Product = productLeft.Product;
             productEntryList.Add(entry, productLeft.Count);
+        }
+
+        private void Initialize(IRefreshable entitySelector)
+        {
+            btnRefreshData.BackgroundImage = (System.Drawing.Bitmap)Properties.Resources.ResourceManager.GetObject("RefreshIcon");
+            Clearing += entitySelector.RefreshData;
+            btnRefreshData.Click += (_, e) => Clear();
+            productEntryList.ItemChanged += () => ListChanged?.Invoke();
         }
     }
 }

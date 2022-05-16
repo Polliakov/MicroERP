@@ -27,6 +27,7 @@ namespace DesktopUI.CustomControls.ProductEntryList
             nmcCount.Maximum = maxCount;
         }
 
+        public event Action<ProductEntryListItem> CountChanged;
         public event Action<ProductEntryListItem> Close;
         public IProductEntry ProductEntry { get; }
 
@@ -38,18 +39,24 @@ namespace DesktopUI.CustomControls.ProductEntryList
         {
             if (value < 0)
                 throw new ArgumentException(nameof(value));
+            if (nmcCount.Value + value > nmcCount.Maximum)
+                return;
 
             ProductEntry.Count += value;
             nmcCount.Value += value;
+            CountChanged.Invoke(this);
         }
 
         public void DecreaseCount(int value)
         {
             if (value < 0)
                 throw new ArgumentException(nameof(value));
+            if (nmcCount.Value - value < nmcCount.Maximum)
+                return;
 
             ProductEntry.Count -= value;
             nmcCount.Value -= value;
+            CountChanged.Invoke(this);
         }
 
         private void NmcCount_ValueChanged(object sender, EventArgs e)
@@ -60,6 +67,7 @@ namespace DesktopUI.CustomControls.ProductEntryList
                 return;
             }
             ProductEntry.Count = (int)nmcCount.Value;
+            CountChanged.Invoke(this);
         }
 
         private void InitializeComponents(Control parent)
@@ -106,6 +114,7 @@ namespace DesktopUI.CustomControls.ProductEntryList
             btnClose.Dispose();
             nmcCount.Dispose();
             btnItem.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

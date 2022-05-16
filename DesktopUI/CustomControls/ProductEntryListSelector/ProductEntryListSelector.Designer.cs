@@ -45,6 +45,7 @@
             this.pnlEntitySelector.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlEntitySelector.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnlEntitySelector.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlEntitySelector.Location = new System.Drawing.Point(3, 31);
             this.pnlEntitySelector.Name = "pnlEntitySelector";
@@ -77,7 +78,7 @@
             this.btnRefreshData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnRefreshData.FlatAppearance.BorderSize = 0;
             this.btnRefreshData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefreshData.Location = new System.Drawing.Point(453, 8);
+            this.btnRefreshData.Location = new System.Drawing.Point(453, 9);
             this.btnRefreshData.Name = "btnRefreshData";
             this.btnRefreshData.Size = new System.Drawing.Size(20, 20);
             this.btnRefreshData.TabIndex = 5;
@@ -114,6 +115,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.productEntryList.AutoScroll = true;
+            this.productEntryList.BackColor = System.Drawing.Color.WhiteSmoke;
             this.productEntryList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.productEntryList.Location = new System.Drawing.Point(3, 31);
             this.productEntryList.Name = "productEntryList";

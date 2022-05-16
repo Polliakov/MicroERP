@@ -66,6 +66,7 @@
     <Compile Include="Security\UserIdentificationException.cs" />
     <Compile Include="Services\CreateChequeService.cs" />
     <Compile Include="Services\CreatePickingService.cs" />
+    <Compile Include="Services\CreateWriteOfService.cs" />
     <Compile Include="Services\WarehouseEntryService.cs" />
     <Compile Include="Services\WarehouseWriteOfException.cs" />
   </ItemGroup>

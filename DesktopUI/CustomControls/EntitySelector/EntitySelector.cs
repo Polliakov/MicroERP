@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace DesktopUI.CustomControls.EntitySelector
 {
-    public partial class EntitySelector<TEntity> : UserControl
+    public partial class EntitySelector<TEntity> : UserControl, IRefreshable
         where TEntity : class
     {
         public EntitySelector(IDataProvider<TEntity> dataProvider)

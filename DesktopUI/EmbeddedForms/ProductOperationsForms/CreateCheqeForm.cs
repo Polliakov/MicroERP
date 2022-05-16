@@ -16,10 +16,12 @@ namespace DesktopUI.EmbeddedForms.ProductOperationsForms
 
             InitializeComponent();
             InitializeProductEntryListSelector(currentWarehouse);
+            lblTotal.Text = lblTotalTitle + 0.ToString("C");
         }
 
         private readonly CreateChequeService service;
         private ProductEntryListSelector<ProductSell> productEntryListSelector;
+        private const string lblTotalTitle = "Cумма: ";
 
         private void BtnEnter_Click(object sender, EventArgs e)
         {
@@ -48,9 +50,18 @@ namespace DesktopUI.EmbeddedForms.ProductOperationsForms
             }
         }
 
+        private void UpdateLblTotal()
+        {
+            var entries = productEntryListSelector.GetEntries();
+            var total = entries.Aggregate(0m, (acc, ps) => acc += ps.Product.Price * ps.Count);
+            lblTotal.Text = lblTotalTitle + total.ToString("C");
+        }
+
         private void InitializeProductEntryListSelector(Warehouse warehouse)
         {
             productEntryListSelector = new ProductEntryListSelector<ProductSell>(warehouse);
+            productEntryListSelector.ListChanged += UpdateLblTotal;
+
             productEntryListSelector.Dock = DockStyle.Fill;
             productEntryListSelector.SelectorTitle = warehouse.ToString();
             productEntryListSelector.ListTitle = "Чек";

@@ -68,6 +68,7 @@
     <Compile Include="CustomControls\EntitySelector\EntitySelector.Designer.cs">
       <DependentUpon>EntitySelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\EntitySelector\IRefreshable.cs" />
     <Compile Include="CustomControls\FormTabs\TabState.cs" />
     <Compile Include="CustomControls\FormTabs\FormTabControl.cs">
       <SubType>UserControl</SubType>
@@ -191,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedForms\ProductOperationsForms\CreatePickingForm.resx">
       <DependentUpon>CreatePickingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedForms\ProductOperationsForms\CreateWriteOfForm.resx">
+      <DependentUpon>CreateWriteOfForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

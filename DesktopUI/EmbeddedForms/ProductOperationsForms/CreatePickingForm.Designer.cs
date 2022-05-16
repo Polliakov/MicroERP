@@ -48,6 +48,7 @@ namespace DesktopUI.EmbeddedForms.ProductOperationsForms
             // btnEnter
             // 
             this.btnEnter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEnter.BackColor = System.Drawing.SystemColors.Window;
             this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnter.Location = new System.Drawing.Point(637, 34);
             this.btnEnter.Margin = new System.Windows.Forms.Padding(3, 25, 3, 12);
@@ -55,7 +56,7 @@ namespace DesktopUI.EmbeddedForms.ProductOperationsForms
             this.btnEnter.Size = new System.Drawing.Size(151, 23);
             this.btnEnter.TabIndex = 4;
             this.btnEnter.Text = "Добавить";
-            this.btnEnter.UseVisualStyleBackColor = true;
+            this.btnEnter.UseVisualStyleBackColor = false;
             this.btnEnter.Click += new System.EventHandler(this.BtnEnter_Click);
             // 
             // cbWarehouse
@@ -73,7 +74,7 @@ namespace DesktopUI.EmbeddedForms.ProductOperationsForms
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(634, 69);
+            this.label4.Location = new System.Drawing.Point(637, 69);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 15);
             this.label4.TabIndex = 14;

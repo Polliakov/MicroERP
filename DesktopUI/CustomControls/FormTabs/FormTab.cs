@@ -68,18 +68,14 @@ namespace DesktopUI.CustomControls.FormTabs
             btnTab.FlatAppearance.BorderSize = 0;
             btnTab.FlatStyle = FlatStyle.Flat;
             btnTab.Name = title;
-            btnTab.Size = new Size(75, 23);
+            btnTab.Size = new Size(100, 23);
             btnTab.TabIndex = 1;
             btnTab.Text = title;
             btnTab.TextAlign = ContentAlignment.MiddleLeft;
             btnTab.UseVisualStyleBackColor = false;
             btnTab.Parent = tabParent;
             hiddenColor = btnTab.BackColor;
-            activeColor = Color.FromArgb(
-                (byte)(hiddenColor.R * 0.8),
-                (byte)(hiddenColor.G * 0.8),
-                (byte)(hiddenColor.B * 0.8)
-            );
+            activeColor = SystemColors.Control;
 
             btnClose = new Button();
             btnClose.Dock = DockStyle.Right;

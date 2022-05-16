@@ -1,4 +1,5 @@
 ﻿using DataBase.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,6 +12,8 @@ namespace DesktopUI.CustomControls.ProductEntryList
         {
             InitializeComponent();
         }
+
+        public event Action ItemChanged;
 
         public List<ProductEntryListItem> Items { get; } = new List<ProductEntryListItem>();
 
@@ -26,7 +29,9 @@ namespace DesktopUI.CustomControls.ProductEntryList
             var item = maxCount is null ? new ProductEntryListItem(productEntry, this) :
                                           new ProductEntryListItem(productEntry, this, maxCount.Value);
             item.Close += Remove;
+            item.CountChanged += _ => ItemChanged.Invoke();
             Items.Add(item);
+            ItemChanged.Invoke();
         }
 
         public IEnumerable<IProductEntry> GetProductEntries() => Items.Select(item => item.ProductEntry);
@@ -35,12 +40,14 @@ namespace DesktopUI.CustomControls.ProductEntryList
         {
             Items.ForEach(item => item.Dispose());
             Items.Clear();
+            ItemChanged.Invoke();
         }
 
         private void Remove(ProductEntryListItem item)
         {
             Items.Remove(item);
             item.Dispose();
+            ItemChanged.Invoke();
         }
     }
 }

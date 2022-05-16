@@ -36,7 +36,7 @@ namespace DesktopUI
 
         private void AddSideMenuItems()
         {
-            sideMenu.AddItem("Продать", EmbaddedForm.CreateChequeForm);
+            sideMenu.AddItem("Продажа товара", EmbaddedForm.CreateChequeForm);
             sideMenu.AddItem("Продажи", EmbaddedForm.ChequeDataForm);
             sideMenu.AddItem("Поставки", EmbaddedForm.ProductPickingDataForm);
             sideMenu.AddItem("Списания", EmbaddedForm.ProductWriteOfDataForm);
@@ -52,7 +52,7 @@ namespace DesktopUI
             sideMenu.AddItem("Новый пользователь", EmbaddedForm.AddUserForm);
             sideMenu.AddItem("Новый склад", EmbaddedForm.AddWarehouseForm);
             sideMenu.AddItem("Новая поставка", EmbaddedForm.CreatePickingForm);
-
+            sideMenu.AddItem("Списание товара", EmbaddedForm.CreateWriteOfForm);
         }
 
         private void InitializeCbCurrentWarehouse()
