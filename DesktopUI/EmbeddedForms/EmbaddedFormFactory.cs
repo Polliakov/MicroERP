@@ -28,12 +28,14 @@ namespace DesktopUI.EmbeddedForms
 
     public class EmbaddedFormFactory
     {
-        public EmbaddedFormFactory(AuthenticatedUser currentUser)
+        public EmbaddedFormFactory(AuthenticatedUser currentUser, Warehouse warehouse)
         {
             this.currentUser = currentUser;
+            this.warehouse = warehouse;
         }
 
         private AuthenticatedUser currentUser;
+        private Warehouse warehouse;
 
         public Form New(EmbaddedForm formType)
         {
@@ -59,7 +61,7 @@ namespace DesktopUI.EmbeddedForms
                 case EmbaddedForm.CreatePickingForm:
                     return new CreatePickingForm(currentUser);
                 case EmbaddedForm.CreateChequeForm:
-                    return new CreateCheqeForm();
+                    return new CreateCheqeForm(currentUser, warehouse);
 
                 // AddingForms
                 case EmbaddedForm.AddProductForm:
@@ -72,6 +74,11 @@ namespace DesktopUI.EmbeddedForms
                     return new AddUserForm();
             }
             throw new NotImplementedException();
+        }
+
+        public void WarehouseChanged(Warehouse warehouse)
+        {
+            this.warehouse = warehouse;
         }
     }
 }

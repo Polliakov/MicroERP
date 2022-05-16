@@ -4,6 +4,7 @@ using DataBase.Contexts;
 using DataBase.Entities;
 using DesktopUI.EmbeddedForms;
 using System;
+using System.Data.Entity;
 using System.Windows.Forms;
 
 namespace DesktopUI
@@ -13,14 +14,25 @@ namespace DesktopUI
         public MainForm(AuthenticatedUser currentUser)
         {
             this.currentUser = currentUser;
-            embaddedFormFactory = new EmbaddedFormFactory(currentUser);
+           
             InitializeComponent();
             AddSideMenuItems();
+            InitializeCbCurrentWarehouse();
+
+            var currentWarehouse = GetCurrentWarehouse();
+            embaddedFormFactory = new EmbaddedFormFactory(currentUser, currentWarehouse);
+
+            cbCurrentWarehouse.SelectedIndexChanged += (_, e) => WarehouseChanged?.Invoke(GetCurrentWarehouse());
+            WarehouseChanged += embaddedFormFactory.WarehouseChanged;
             sideMenu.ItemClick += SideMenu_ItemClick;
         }
 
+        public event Action<Warehouse> WarehouseChanged;
+
         private readonly EmbaddedFormFactory embaddedFormFactory;
         private readonly AuthenticatedUser currentUser;
+
+        private Warehouse GetCurrentWarehouse() => (Warehouse)cbCurrentWarehouse.SelectedItem;
 
         private void AddSideMenuItems()
         {
@@ -43,6 +55,14 @@ namespace DesktopUI
 
         }
 
+        private void InitializeCbCurrentWarehouse()
+        {
+            var dataProvider = new DataProvider<Warehouse>();
+            var set = dataProvider.GetData();
+            set.Load();
+            cbCurrentWarehouse.DataSource = set.Local.ToBindingList();
+        }
+
         private void SideMenu_ItemClick(string title, object tag)
         {
             if (!(tag is EmbaddedForm))
@@ -56,6 +76,11 @@ namespace DesktopUI
         {
             MicroERPContextSingleton.Instanse.SaveChanges();
             Application.Exit();
+        }
+
+        private void CbCurrentWarehouse_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

@@ -10,12 +10,21 @@ namespace DesktopUI.CustomControls.ProductEntryList
         public ProductEntryListItem(IProductEntry productEntry, Control parent)
         {
             ProductEntry = productEntry;
-            if (ProductEntry.Count < 1)
-                ProductEntry.Count = 1;
 
             InitializeComponents(parent);
             nmcCount.ValueChanged += NmcCount_ValueChanged;
             btnClose.Click += (_, e) => Close.Invoke(this);
+        }
+
+        public ProductEntryListItem(IProductEntry productEntry, Control parent, int maxCount)
+            : this(productEntry, parent)
+        {
+            if (maxCount < 1)
+                throw new ArgumentOutOfRangeException(nameof(maxCount), "Cant't create an empty item.");
+            if (productEntry.Count > maxCount)
+                throw new ArgumentOutOfRangeException(nameof(productEntry), $"\"{nameof(productEntry)}\" count is more then \"{nameof(maxCount)}\".");
+
+            nmcCount.Maximum = maxCount;
         }
 
         public event Action<ProductEntryListItem> Close;
@@ -70,7 +79,7 @@ namespace DesktopUI.CustomControls.ProductEntryList
 
             nmcCount = new NumericUpDown();
             nmcCount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            nmcCount.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            nmcCount.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             nmcCount.Name = "numericUpDown";
             nmcCount.Size = new Size(50, 21);
             nmcCount.TabIndex = 1;

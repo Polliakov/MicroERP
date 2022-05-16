@@ -14,7 +14,7 @@ namespace DesktopUI.CustomControls.ProductEntryList
 
         public List<ProductEntryListItem> Items { get; } = new List<ProductEntryListItem>();
 
-        public void Add(IProductEntry productEntry)
+        public void Add(IProductEntry productEntry, int? maxCount = null)
         {
             var existsItem = Items.FirstOrDefault(i => i.ProductEntry.Product == productEntry.Product);
             if (!(existsItem is null))
@@ -23,7 +23,8 @@ namespace DesktopUI.CustomControls.ProductEntryList
                 return;
             }
 
-            var item = new ProductEntryListItem(productEntry, this);
+            var item = maxCount is null ? new ProductEntryListItem(productEntry, this) :
+                                          new ProductEntryListItem(productEntry, this, maxCount.Value);
             item.Close += Remove;
             Items.Add(item);
         }

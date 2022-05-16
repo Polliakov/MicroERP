@@ -1,10 +1,11 @@
 ﻿using DataBase.Contexts;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 
 namespace BL.DataProviders
 {
-    public class DataProvider<TEntity>
+    public class DataProvider<TEntity> : IDataProvider<TEntity>
         where TEntity : class
     {
         private readonly MicroERPContext db = MicroERPContextSingleton.Instanse;
@@ -26,8 +27,10 @@ namespace BL.DataProviders
             db.SaveChanges();
         }
 
-        public DbSet<TEntity> GetDbSet() => set;
-        public DbSet<TEntity> GetDbSet(List<Filter<TEntity>> filters)
+        IQueryable<TEntity> IDataProvider<TEntity>.GetData() => GetData();
+
+        public DbSet<TEntity> GetData() => set;
+        public DbSet<TEntity> GetData(List<Filter<TEntity>> filters)
         {
             IEnumerable<TEntity> result = set;
             foreach (var filter in filters)

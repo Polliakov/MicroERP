@@ -19,7 +19,7 @@ namespace DesktopUI.EmbeddedForms.AddingForms
         public AddProductForm()
         {
             InitializeComponent();
-            var set = productCategoryDP.GetDbSet();
+            var set = productCategoryDP.GetData();
             set.Load();
             cbCategory.DataSource = set.Local.ToBindingList();
             cbCategory.SelectedIndex = 0;

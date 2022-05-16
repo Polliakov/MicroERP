@@ -10,7 +10,7 @@ namespace DesktopUI.EmbeddedForms
         public DataForm()
         {
             InitializeComponent();
-            var set = dataProvider.GetDbSet();
+            var set = dataProvider.GetData();
             set.Load();
             dataGridView.DataSource = set.Local.ToBindingList();
         }

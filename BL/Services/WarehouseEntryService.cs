@@ -1,6 +1,5 @@
 ﻿using BL.DataProviders;
 using DataBase.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,10 +9,10 @@ namespace BL.Services
     {
         private readonly DataProvider<ProductInWarehouse> dataProvider = new DataProvider<ProductInWarehouse>();
 
-        public void IncreaseCount(IEnumerable<IProductEntry> pickingEntries, Warehouse warehouse)
+        public void AddEntries(IEnumerable<IProductEntry> productEntries, Warehouse warehouse)
         {
-            var warehouseEntries = dataProvider.GetDbSet();
-            foreach (var pickingEntry in pickingEntries)
+            var warehouseEntries = dataProvider.GetData();
+            foreach (var pickingEntry in productEntries)
             {
                 var warehouseEntry = warehouseEntries.FirstOrDefault(entry =>
                                      entry.Warehouse.Id == warehouse.Id &&
@@ -36,9 +35,27 @@ namespace BL.Services
             }
         }
 
-        public void DecreaseCount(IEnumerable<IProductEntry> productEntries, Warehouse warehouse)
+        public void WriteOfEntries(IEnumerable<IProductEntry> productEntries, Warehouse warehouse)
         {
-            throw new NotImplementedException();
+            var warehouseEntries = dataProvider.GetData();
+            var PeWeMatches = productEntries.Select(pe =>
+                                     (productEntry: pe,
+                                      warehouseEntry: warehouseEntries.FirstOrDefault(we =>
+                                                       we.Warehouse.Id == warehouse.Id &&
+                                                       we.Product.Id == pe.Product.Id)
+                                     ));
+
+            foreach (var (productEntry, warehouseEntry) in PeWeMatches)
+            {
+                if ((warehouseEntry is null) || (productEntry.Count > warehouseEntry.Count))
+                    throw new WarehouseWriteOfException(productEntry.Product, productEntry.Count,
+                                                        warehouse, (warehouseEntry?.Count ?? 0));
+            }
+
+            foreach (var (productEntry, warehouseEntry) in PeWeMatches)
+            {
+                warehouseEntry.Count -= productEntry.Count;
+            }
         }
     }
 }

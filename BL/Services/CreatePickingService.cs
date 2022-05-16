@@ -17,10 +17,10 @@ namespace BL.Services
         private readonly WarehouseEntryService warehouseService = new WarehouseEntryService();
         private readonly DataProvider<ProductPicking> productPickingDP = new DataProvider<ProductPicking>();
 
-        public void Create(IEnumerable<ProductInPicking> pickingEntries, Warehouse warehouse)
+        public void Create(IEnumerable<ProductInPicking> dataProvider, Warehouse warehouse)
         {
-            warehouseService.IncreaseCount(pickingEntries, warehouse);
-            CreateProductPicking(pickingEntries);          
+            warehouseService.AddEntries(dataProvider, warehouse);
+            CreateProductPicking(dataProvider);          
         }      
 
         private void CreateProductPicking(IEnumerable<ProductInPicking> pickingEntries)

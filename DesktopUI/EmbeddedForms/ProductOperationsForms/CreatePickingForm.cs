@@ -20,7 +20,7 @@ namespace DesktopUI.EmbeddedForms.ProductOperationsForms
             InitializeProductEntryListSelector();
 
             var dataProvider = new DataProvider<Warehouse>();
-            var set = dataProvider.GetDbSet();
+            var set = dataProvider.GetData();
             set.Load();
             cbWarehouse.DataSource = set.Local.ToBindingList();
         }

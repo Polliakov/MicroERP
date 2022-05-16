@@ -1,5 +1,7 @@
 ﻿using BL.DataProviders;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Windows.Forms;
 
@@ -8,17 +10,16 @@ namespace DesktopUI.CustomControls.EntitySelector
     public partial class EntitySelector<TEntity> : UserControl
         where TEntity : class
     {
-        public EntitySelector()
+        public EntitySelector(IDataProvider<TEntity> dataProvider)
         {
+            var set = dataProvider.GetData();
+            var list = (IList<TEntity>)set.ToListAsync().Result;
+
             InitializeComponent();
-            var set = dataProvider.GetDbSet();
-            set.Load();
-            dataGridView.DataSource = set.Local.ToBindingList();
+            dataGridView.DataSource = new BindingList<TEntity>(list);
         }
 
         public event Action<TEntity> EntitySelected;
-
-        private readonly DataProvider<TEntity> dataProvider = new DataProvider<TEntity>();
 
         private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
