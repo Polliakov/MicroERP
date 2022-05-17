@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace BL.DataProviders
 {
-    public class ProducLeftDataProvider : IDataProvider<ProductLeftModel>
+    public class ProducEntryDataProvider : IDataProvider<ProductEntryModel>
     {
         private readonly MicroERPContext db = MicroERPContextSingleton.Instanse;
 
-        public ProducLeftDataProvider(Warehouse warehouse)
+        public ProducEntryDataProvider(Warehouse warehouse)
         {
             this.warehouse = warehouse;
         }
@@ -18,18 +18,17 @@ namespace BL.DataProviders
 
         public void Save() => db.SaveChanges();
 
-        public IQueryable<ProductLeftModel> GetData()
+        public IQueryable<ProductEntryModel> GetData()
         {
             return db.ProductsInWarehouses
                    .Where(pw => pw.Warehouse.Id == warehouse.Id && pw.Count > 0)
-                   .Select(pw => new ProductLeftModel
+                   .Select(pw => new ProductEntryModel
                    {
                        Name = pw.Product.Name,
                        Price = pw.Product.Price,
                        Count = pw.Count,
                        Description = pw.Product.Description,
                        Product = pw.Product,
-                       Warehouse = pw.Warehouse,
                    });
         }
     }

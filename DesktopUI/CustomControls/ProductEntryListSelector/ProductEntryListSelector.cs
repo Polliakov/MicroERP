@@ -28,8 +28,8 @@ namespace DesktopUI.CustomControls.ProductEntryListSelector
 
         public ProductEntryListSelector(Warehouse warehouse)
         {
-            var dataProvider = new ProducLeftDataProvider(warehouse);
-            var entitySelector = new EntitySelector<ProductLeftModel>(dataProvider)
+            var dataProvider = new ProducEntryDataProvider(warehouse);
+            var entitySelector = new EntitySelector<ProductEntryModel>(dataProvider)
             {
                 Dock = DockStyle.Fill,
             };
@@ -62,7 +62,7 @@ namespace DesktopUI.CustomControls.ProductEntryListSelector
             productEntryList.Add(entry);
         }
 
-        private void AddEntryToList(ProductLeftModel productLeft)
+        private void AddEntryToList(ProductEntryModel productLeft)
         {
             var entry = (IProductEntry)new TEntry();
             entry.Count = 1;

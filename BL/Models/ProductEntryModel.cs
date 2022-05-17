@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace BL.Models
 {
-    public class ProductLeftModel
+    public class ProductEntryModel
     {
         [DisplayName("Наименование")]
         public string Name { get; set; }
@@ -19,9 +19,5 @@ namespace BL.Models
 
         [Browsable(false)]
         public Product Product { get; set; }
-
-        [Browsable(false)]
-        public Warehouse Warehouse { get; set; }
-
     }
 }

@@ -157,6 +157,37 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\TextBoxValidationExtensions.cs" />
+    <Compile Include="ViewForms\ChequeViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewForms\ChequeViewForm.Designer.cs">
+      <DependentUpon>ChequeViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewForms\ProductPickingViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewForms\ProductPickingViewForm.Designer.cs">
+      <DependentUpon>ProductPickingViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewForms\ProductWriteOfViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewForms\ProductWriteOfViewForm.Designer.cs">
+      <DependentUpon>ProductWriteOfViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewForms\UserViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewForms\UserViewForm.Designer.cs">
+      <DependentUpon>UserViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewForms\ViewForm.cs" />
+    <Compile Include="ViewForms\WarehouseViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewForms\WarehouseViewForm.Designer.cs">
+      <DependentUpon>WarehouseViewForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AuthenticationForm.resx">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </EmbeddedResource>

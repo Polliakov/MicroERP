@@ -29,6 +29,7 @@
                 Password = Convert.FromBase64String("G9xQ6LeCTRLoe4PuVhvcVoDJtcpx/dNsmLvRSC1VSdi7qw7v9hA391l40Y+oxVb4udGkCIZTe4zLKLvShek4Yw=="),
                 Role = UserRole.Administrator,
             });
+            context.SaveChanges();
         }
     }
 }
