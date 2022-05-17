@@ -28,7 +28,7 @@ namespace MicroERPTests
                         Name = "TestCashierName",
                         Surname = "TestCashierSurname",
                         PhoneNumber = Login,
-                        Password = PasswordHash.Calculate(Password),
+                        Password = PasswordHash.Calculate(Password, Login),
                         Role = UserRole.Cashier,
                     });
                     db.SaveChanges();
@@ -43,7 +43,7 @@ namespace MicroERPTests
                         Surname = "TestAdminSurname",
                         Patronymic = "TestAdminPatronymic",
                         PhoneNumber = AdminLogin,
-                        Password = PasswordHash.Calculate(AdminPassword),
+                        Password = PasswordHash.Calculate(AdminPassword, AdminLogin),
                         Role = UserRole.Administrator,
                     });
                     db.SaveChanges();

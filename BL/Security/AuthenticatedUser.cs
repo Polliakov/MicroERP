@@ -24,7 +24,7 @@ namespace BL.Security
                 if (user is null)
                     throw new UserIdentificationException();
 
-                var passwordHash = PasswordHash.Calculate(password);
+                var passwordHash = PasswordHash.Calculate(password, login);
                 if (!PasswordsAreEqual(user.Password, passwordHash))
                     throw new UserAuthenticationException();
 

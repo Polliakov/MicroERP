@@ -34,7 +34,7 @@ namespace DesktopUI.EmbeddedForms.AddingForms
                 Surname = tbSurname.Text,
                 Patronymic = string.IsNullOrWhiteSpace(tbPatronymic.Text) ? null : tbPatronymic.Text,
                 PhoneNumber = tbPhoneNumber.Text,
-                Password = PasswordHash.Calculate(tbPassword.Text),
+                Password = PasswordHash.Calculate(tbPassword.Text, tbPhoneNumber.Text),
                 Role = (UserRole)cbRole.SelectedIndex,
             };
 
