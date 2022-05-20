@@ -1,19 +1,25 @@
 ﻿using DataBase.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DesktopUI.ViewForms
 {
-    public abstract class ViewForm<TEntity>
+    public abstract class ViewForm
     {
-        public static Form New(TEntity entity)
+        public static Form NewFor<TEntity>(TEntity entity)
         {
-            if (typeof(TEntity) == typeof(Cheque)) ;
-            throw new NotImplementedException();
+            var entityType = typeof(TEntity);
+            if (entityType == typeof(Cheque))
+                return new ChequeViewForm(entity as Cheque);
+            if (entityType == typeof(ProductWriteOf))
+                return new ProductWriteOfViewForm(entity as ProductWriteOf);
+            if (entityType == typeof(ProductPicking))
+                return new ProductPickingViewForm(entity as ProductPicking);
+            if (entityType == typeof(Warehouse))
+                return new WarehouseViewForm(entity as Warehouse);
+            if (entityType == typeof(User))
+                return new UserViewForm(entity as User);
+
+            return null;
         }
     }
 }

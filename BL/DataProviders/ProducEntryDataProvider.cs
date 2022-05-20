@@ -11,25 +11,45 @@ namespace BL.DataProviders
 
         public ProducEntryDataProvider(Warehouse warehouse)
         {
-            this.warehouse = warehouse;
+            var productsInWarehouse = db.ProductsInWarehouses
+                .Where(pw => pw.WarehouseID == warehouse.Id && pw.Count > 0);
+            set = SelectProductEntries(productsInWarehouse);
         }
 
-        private readonly Warehouse warehouse;
+        public ProducEntryDataProvider(Cheque cheque)
+        {
+            var productSells = db.ProductsSells.Where(ps => ps.ChequeId == cheque.Id);
+            set = SelectProductEntries(productSells);
+        }
+
+        public ProducEntryDataProvider(ProductWriteOf writeOf)
+        {
+            var productsInWriteOf = db.ProductsInWriteOfs.Where(pw => pw.WriteOfId == writeOf.Id);
+            set = SelectProductEntries(productsInWriteOf);
+        }
+
+        public ProducEntryDataProvider(ProductPicking picking)
+        {
+            var productsInPicking = db.ProductsInPickings.Where(pp => pp.PickingId == picking.Id);
+            set = SelectProductEntries(productsInPicking);
+        }
+
+        private readonly IQueryable<ProductEntryModel> set;
 
         public void Save() => db.SaveChanges();
 
-        public IQueryable<ProductEntryModel> GetData()
+        public IQueryable<ProductEntryModel> GetData() => set;
+
+        private IQueryable<ProductEntryModel> SelectProductEntries(IQueryable<IProductEntry> entries)
         {
-            return db.ProductsInWarehouses
-                   .Where(pw => pw.Warehouse.Id == warehouse.Id && pw.Count > 0)
-                   .Select(pw => new ProductEntryModel
-                   {
-                       Name = pw.Product.Name,
-                       Price = pw.Product.Price,
-                       Count = pw.Count,
-                       Description = pw.Product.Description,
-                       Product = pw.Product,
-                   });
+            return entries.Select(pw => new ProductEntryModel
+            {
+                Name = pw.Product.Name,
+                Price = pw.Product.Price,
+                Count = pw.Count,
+                Description = pw.Product.Description,
+                Product = pw.Product,
+            });
         }
     }
 }

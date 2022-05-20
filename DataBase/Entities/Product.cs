@@ -25,7 +25,7 @@ namespace DataBase.Entities
         public int CategoryId { get; set; }
 
         [Browsable(false)]
-        public ProductCategory Category { get; set; }
+        public virtual ProductCategory Category { get; set; }
         public virtual List<ProductInWarehouse> InWarehouses { get; set; } = new List<ProductInWarehouse>();
         public virtual List<ProductSell> Sells { get; set; } = new List<ProductSell>();
         public virtual List<ProductInPicking> InPickings { get; set; } = new List<ProductInPicking>();

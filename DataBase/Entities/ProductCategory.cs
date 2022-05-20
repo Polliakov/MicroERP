@@ -17,7 +17,7 @@ namespace DataBase.Entities
         public int? ParentCategoryId { get; set; }
 
         [Browsable(false)]
-        public ProductCategory ParentCategory { get; set; }
+        public virtual ProductCategory ParentCategory { get; set; }
         public virtual List<Product> Products { get; set; } = new List<Product>();
 
         public override string ToString() => Name;

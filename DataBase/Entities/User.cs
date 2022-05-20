@@ -40,5 +40,22 @@ namespace DataBase.Entities
         public virtual List<Cheque> Cheques { get; set; } = new List<Cheque>();
         public virtual List<ProductPicking> ProductPickings { get; set; } = new List<ProductPicking>();
         public virtual List<ProductWriteOf> ProductWriteOfs { get; set; } = new List<ProductWriteOf>();
+
+        public override string ToString()
+        {
+            return GetFullNameShort() + " тел. " + PhoneNumber;
+        }
+
+        public string GetFullName() => $"{Surname} {Name} {Patronymic ?? ""}";
+
+        public string GetFullNameShort()
+        {
+            string fullName = Surname;
+            if (!string.IsNullOrEmpty(Name))
+                fullName += " " + Name[0];
+            if (!string.IsNullOrEmpty(Patronymic))
+                fullName += " " + Patronymic[0];
+            return fullName;
+        }
     }
 }

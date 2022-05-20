@@ -22,6 +22,6 @@ namespace DataBase.Entities
 
         public virtual List<ProductSell> Items { get; set; } = new List<ProductSell>();
         [Browsable(false)]
-        public User User { get; set; }
+        public virtual User User { get; set; }
     }
 }

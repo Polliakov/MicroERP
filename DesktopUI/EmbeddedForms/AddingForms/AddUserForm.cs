@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace DesktopUI.EmbeddedForms.AddingForms
 {
+    // TODO: Выполнение проверки на существование номера телефона перед попыткой добавления пользователя.
     public partial class AddUserForm : Form
     {
         public AddUserForm()

@@ -19,9 +19,9 @@ namespace DesktopUI.CustomControls.EntitySelector
             RefreshData();
         }
 
-        private readonly IQueryable<TEntity> data;
-
         public event Action<TEntity> EntitySelected;
+
+        private readonly IQueryable<TEntity> data;
 
         public void RefreshData()
         {

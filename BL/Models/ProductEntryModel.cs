@@ -11,7 +11,7 @@ namespace BL.Models
         [DisplayName("Цена")]
         public decimal Price { get; set; }
 
-        [DisplayName("На складе")]
+        [DisplayName("Количество")]
         public int Count { get; set; }
 
         [DisplayName("Описание")]

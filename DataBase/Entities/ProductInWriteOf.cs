@@ -19,7 +19,7 @@ namespace DataBase.Entities
         [Range(1, int.MaxValue)]
         public int Count { get; set; }
 
-        public Product Product { get; set; }
-        public ProductWriteOf WriteOf { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual ProductWriteOf WriteOf { get; set; }
     }
 }

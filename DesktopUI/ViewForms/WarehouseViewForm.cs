@@ -1,20 +1,25 @@
-﻿using System;
+﻿using BL.DataProviders;
+using BL.Models;
+using DataBase.Entities;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
 using System.Windows.Forms;
 
 namespace DesktopUI.ViewForms
 {
     public partial class WarehouseViewForm : Form
     {
-        public WarehouseViewForm()
+        public WarehouseViewForm(Warehouse warehouse)
         {
             InitializeComponent();
+
+            lblName.Text = warehouse.Name ?? "Склад";
+            lblAddress.Text = warehouse.Address;
+
+            var data = new ProducEntryDataProvider(warehouse).GetData();
+            var list = (IList<ProductEntryModel>)data.ToListAsync().Result;
+            dataGridView.DataSource = new BindingList<ProductEntryModel>(list);
         }
     }
 }

@@ -21,6 +21,6 @@ namespace DataBase.Entities
         public DateTime Timestamp { get; set; }
 
         public virtual List<ProductInWriteOf> Items { get; set; } = new List<ProductInWriteOf>();
-        public User User { get; set; }
+        public virtual User User { get; set; }
     }
 }
