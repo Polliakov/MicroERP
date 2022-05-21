@@ -1,6 +1,7 @@
 ﻿using BL.DataProviders;
 using BL.Models;
 using DataBase.Entities;
+using DataBase.Interfaces;
 using DesktopUI.CustomControls.EntitySelector;
 using System;
 using System.Collections.Generic;

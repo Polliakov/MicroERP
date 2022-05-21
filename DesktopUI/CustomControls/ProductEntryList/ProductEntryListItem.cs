@@ -1,4 +1,4 @@
-﻿using DataBase.Entities;
+﻿using DataBase.Interfaces;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -81,7 +81,7 @@ namespace DesktopUI.CustomControls.ProductEntryList
             btnItem.Size = new Size(344, 23);
             btnItem.TabIndex = 0;
             btnItem.Text = ProductEntry.Product.Name;
-            btnItem.TextAlign = ContentAlignment.MiddleLeft; 
+            btnItem.TextAlign = ContentAlignment.MiddleLeft;
             btnItem.UseVisualStyleBackColor = false;
             btnItem.Parent = parent;
 

@@ -1,6 +1,7 @@
 ﻿using BL.Models;
 using DataBase.Contexts;
 using DataBase.Entities;
+using DataBase.Interfaces;
 using System.Linq;
 
 namespace BL.DataProviders
