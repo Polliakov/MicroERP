@@ -79,6 +79,7 @@
             this.btnRefreshData.FlatAppearance.BorderSize = 0;
             this.btnRefreshData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefreshData.Location = new System.Drawing.Point(453, 9);
+            this.btnRefreshData.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
             this.btnRefreshData.Name = "btnRefreshData";
             this.btnRefreshData.Size = new System.Drawing.Size(20, 20);
             this.btnRefreshData.TabIndex = 5;

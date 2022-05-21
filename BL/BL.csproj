@@ -55,9 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataProviders\DataProvider.cs" />
-    <Compile Include="DataProviders\Filter.cs" />
     <Compile Include="DataProviders\IDataProvider.cs" />
     <Compile Include="DataProviders\ProducEntryDataProvider.cs" />
+    <Compile Include="DataProviders\ProductOperationDataProvider.cs" />
     <Compile Include="Models\ProductEntryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AuthenticatedUser.cs" />

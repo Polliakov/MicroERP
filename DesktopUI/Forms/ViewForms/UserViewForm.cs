@@ -1,10 +1,5 @@
 ﻿using BL.DataProviders;
-using BL.Models;
 using DataBase.Entities;
-using DesktopUI.CustomControls;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.Entity;
 using System.Windows.Forms;
 
 namespace DesktopUI.Forms.ViewForms
@@ -13,6 +8,8 @@ namespace DesktopUI.Forms.ViewForms
     {
         public UserViewForm(User user)
         {
+            this.user = user;
+
             InitializeComponent();
 
             lblName.Text = user.Name;
@@ -22,19 +19,27 @@ namespace DesktopUI.Forms.ViewForms
             lblRole.Text = user.Role.ToString();
         }
 
+        private readonly User user;
+
         private void BtnCheques_Click(object sender, System.EventArgs e)
         {
-
+            var dataForm = new DataForm<Cheque>(new ProductOperationDataProvider<Cheque>(user));
+            dataForm.Text = "Чеки " + user.GetFullNameShort();
+            dataForm.Show();
         }
 
         private void BtnPickings_Click(object sender, System.EventArgs e)
         {
-
+            var dataForm = new DataForm<ProductPicking>(new ProductOperationDataProvider<ProductPicking>(user));
+            dataForm.Text = "Поставки " + user.GetFullNameShort();
+            dataForm.Show();
         }
 
         private void BtnWriteOfs_Click(object sender, System.EventArgs e)
         {
-
+            var dataForm = new DataForm<ProductWriteOf>(new ProductOperationDataProvider<ProductWriteOf>(user));
+            dataForm.Text = "Списания " + user.GetFullNameShort();
+            dataForm.Show();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BL.DataProviders;
 using DataBase.Entities;
+using DataBase.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,29 +16,16 @@ namespace DesktopUI.Forms.ViewForms
         public DataForm(IDataProvider<TEntity> dataProvider, UserRole userRole = UserRole.Cashier)
         {
             InitializeComponent();
-            if (userRole == UserRole.Administrator)
-                canDelete = true;
+            if (userRole == UserRole.Administrator && typeof(TEntity) is IDeletable)
+            {
+                btnDelete.Visible = true;
+            }
 
             data = dataProvider.GetData();
-            var list = (IList<TEntity>)data.ToListAsync().Result;
-            dataGridView.DataSource = new BindingList<TEntity>(list);
+            RefreshData();
         }
 
-        private readonly bool canDelete = false;
         private readonly IQueryable<TEntity> data;
-
-        private void DataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right)
-                return;
-            if (e.RowIndex == -1 || e.ColumnIndex == -1)
-                return;
-
-            var menu = new ContextMenu();
-            menu.MenuItems.Add("Удалить", (_, args) => TryDelete(dataGridView.Rows[e.RowIndex]));
-            menu.Show(dataGridView, new System.Drawing.Point(e.X, e.Y));
-            // TODO: Некорректно задаётся координата Y.
-        }
 
         private void DataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -49,19 +37,27 @@ namespace DesktopUI.Forms.ViewForms
             var viewForm = ViewForm.NewFor(selected);
             viewForm?.Show();
         }
-
-        private void TryDelete(DataGridViewRow row)
+        private void BtnDelete_Click(object sender, EventArgs e)
         {
-            // TODO: Удаление записей.
-            if (!canDelete) return;
-            throw new NotImplementedException();
+            var row = dataGridView.SelectedRows[0];
+            var entity = (TEntity)row.DataBoundItem;
+            var dialogResult = MessageBox.Show($"Удалить \"{entity}\"?", "Удаление", MessageBoxButtons.YesNoCancel);
+            if (dialogResult == DialogResult.Yes)
+            {
+                dataGridView.Rows.Remove(row);
+                ((IDeletable)entity).Deleted = DateTime.Now;
+            }
+        }
+
+        private void BtnRefreshData_Click(object sender, EventArgs e)
+        {
+            RefreshData();
         }
 
         private void RefreshData()
         {
             var list = (IList<TEntity>)data.ToListAsync().Result;
             dataGridView.DataSource = new BindingList<TEntity>(list);
-            dataGridView.ClearSelection();
         }
     }
 }

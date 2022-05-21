@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using DataBase.Attributes;
+using DataBase.Interfaces;
 
 namespace DataBase.Entities
 {
-    public class Cheque
+    public class Cheque : IProductOperation
     {
         [Browsable(false)]
         public int Id { get; set; }

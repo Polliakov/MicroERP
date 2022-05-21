@@ -33,6 +33,8 @@ namespace DesktopUI.Forms.ViewForms
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.btnRefreshData = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +65,7 @@ namespace DesktopUI.Forms.ViewForms
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.EnableHeadersVisualStyles = false;
-            this.dataGridView.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView.Location = new System.Drawing.Point(12, 39);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -75,16 +77,46 @@ namespace DesktopUI.Forms.ViewForms
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(884, 510);
+            this.dataGridView.Size = new System.Drawing.Size(884, 485);
             this.dataGridView.TabIndex = 2;
-            this.dataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView_CellMouseClick);
             this.dataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView_CellMouseDoubleClick);
+            // 
+            // btnRefreshData
+            // 
+            this.btnRefreshData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefreshData.BackgroundImage = global::DesktopUI.Properties.Resources.RefreshIcon;
+            this.btnRefreshData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRefreshData.FlatAppearance.BorderSize = 0;
+            this.btnRefreshData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefreshData.Location = new System.Drawing.Point(873, 13);
+            this.btnRefreshData.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
+            this.btnRefreshData.Name = "btnRefreshData";
+            this.btnRefreshData.Size = new System.Drawing.Size(20, 20);
+            this.btnRefreshData.TabIndex = 6;
+            this.btnRefreshData.UseVisualStyleBackColor = true;
+            this.btnRefreshData.Click += new System.EventHandler(this.BtnRefreshData_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(165)))), ((int)(((byte)(160)))));
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Location = new System.Drawing.Point(12, 10);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 7;
+            this.btnDelete.Text = "Удалить";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Visible = false;
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // DataForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(908, 534);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnRefreshData);
             this.Controls.Add(this.dataGridView);
             this.Name = "DataForm";
             this.Text = "DataForm";
@@ -96,5 +128,7 @@ namespace DesktopUI.Forms.ViewForms
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.Button btnRefreshData;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

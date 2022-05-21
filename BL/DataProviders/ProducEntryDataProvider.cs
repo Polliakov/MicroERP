@@ -8,8 +8,6 @@ namespace BL.DataProviders
 {
     public class ProducEntryDataProvider : IDataProvider<ProductEntryModel>
     {
-        private readonly MicroERPContext db = MicroERPContextSingleton.Instanse;
-
         public ProducEntryDataProvider(Warehouse warehouse)
         {
             var productsInWarehouse = db.ProductsInWarehouses
@@ -35,6 +33,7 @@ namespace BL.DataProviders
             set = SelectProductEntries(productsInPicking);
         }
 
+        private readonly MicroERPContext db = MicroERPContextSingleton.Instanse;
         private readonly IQueryable<ProductEntryModel> set;
 
         public void Save() => db.SaveChanges();

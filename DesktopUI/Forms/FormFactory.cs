@@ -35,7 +35,7 @@ namespace DesktopUI.Forms
             this.warehouse = warehouse;
         }
 
-        private AuthenticatedUser currentUser;
+        private readonly AuthenticatedUser currentUser;
         private Warehouse warehouse;
 
         public Form New(EmbaddedForm formType)

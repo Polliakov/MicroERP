@@ -1,5 +1,4 @@
 ﻿using DataBase.Contexts;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -30,12 +29,5 @@ namespace BL.DataProviders
         IQueryable<TEntity> IDataProvider<TEntity>.GetData() => GetData();
 
         public DbSet<TEntity> GetData() => set;
-        public DbSet<TEntity> GetData(List<Filter<TEntity>> filters)
-        {
-            IEnumerable<TEntity> result = set;
-            foreach (var filter in filters)
-                result = filter.Apply(result);
-            return result as DbSet<TEntity>;
-        }
     }
 }
