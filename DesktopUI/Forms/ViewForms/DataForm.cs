@@ -15,8 +15,12 @@ namespace DesktopUI.Forms.ViewForms
     {
         public DataForm(IDataProvider<TEntity> dataProvider, UserRole userRole = UserRole.Cashier)
         {
+            this.dataProvider = dataProvider;
+
             InitializeComponent();
-            if (userRole == UserRole.Administrator && typeof(TEntity) is IDeletable)
+
+            if (userRole == UserRole.Administrator && 
+                typeof(TEntity).GetInterface(nameof(IDeletable)) != null)
             {
                 btnDelete.Visible = true;
             }
@@ -25,6 +29,7 @@ namespace DesktopUI.Forms.ViewForms
             RefreshData();
         }
 
+        private readonly IDataProvider<TEntity> dataProvider;
         private readonly IQueryable<TEntity> data;
 
         private void DataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -39,6 +44,8 @@ namespace DesktopUI.Forms.ViewForms
         }
         private void BtnDelete_Click(object sender, EventArgs e)
         {
+            if (dataGridView.SelectedRows.Count == 0) return;
+
             var row = dataGridView.SelectedRows[0];
             var entity = (TEntity)row.DataBoundItem;
             var dialogResult = MessageBox.Show($"Удалить \"{entity}\"?", "Удаление", MessageBoxButtons.YesNoCancel);
@@ -46,6 +53,7 @@ namespace DesktopUI.Forms.ViewForms
             {
                 dataGridView.Rows.Remove(row);
                 ((IDeletable)entity).Deleted = DateTime.Now;
+                dataProvider.Save();
             }
         }
 

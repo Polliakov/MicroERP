@@ -15,7 +15,7 @@ namespace DesktopUI.CustomControls.ProductEntryListSelector
     {
         public ProductEntryListSelector()
         {
-            var dataProvider = new DataProvider<Product>();
+            var dataProvider = new DeletableDataProvider<Product>();
             var entitySelector = new EntitySelector<Product>(dataProvider)
             {
                 Dock = DockStyle.Fill,

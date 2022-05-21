@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using DataBase.Interfaces;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataBase.Entities
 {
-    public class User
+    public class User : IDeletable
     {
 
         [Browsable(false)]
@@ -36,6 +38,9 @@ namespace DataBase.Entities
 
         [DisplayName("Роль")]
         public UserRole Role { get; set; }
+
+        [Browsable(false)]
+        public DateTime? Deleted { get; set; }
 
         public virtual List<Cheque> Cheques { get; set; } = new List<Cheque>();
         public virtual List<ProductPicking> ProductPickings { get; set; } = new List<ProductPicking>();

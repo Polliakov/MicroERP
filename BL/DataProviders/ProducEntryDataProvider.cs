@@ -36,9 +36,7 @@ namespace BL.DataProviders
         private readonly MicroERPContext db = MicroERPContextSingleton.Instanse;
         private readonly IQueryable<ProductEntryModel> set;
 
-        public void Save() => db.SaveChanges();
-
-        public IQueryable<ProductEntryModel> GetData() => set;
+        public IQueryable<ProductEntryModel> GetData(bool getDeleted = false) => set;
 
         private IQueryable<ProductEntryModel> SelectProductEntries(IQueryable<IProductEntry> entries)
         {
@@ -51,5 +49,7 @@ namespace BL.DataProviders
                 Product = pw.Product,
             });
         }
+
+        public void Save() => db.SaveChanges();
     }
 }

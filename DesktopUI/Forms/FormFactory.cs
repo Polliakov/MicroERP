@@ -46,17 +46,17 @@ namespace DesktopUI.Forms
                 case EmbaddedForm.ChequeDataForm:
                     return new DataForm<Cheque>(new DataProvider<Cheque>(), currentUser.Role);
                 case EmbaddedForm.ProductDataForm: 
-                    return new DataForm<Product>(new DataProvider<Product>(), currentUser.Role);
+                    return new DataForm<Product>(new DeletableDataProvider<Product>(), currentUser.Role);
                 case EmbaddedForm.ProductCategoryDataForm:
-                    return new DataForm<ProductCategory>(new DataProvider<ProductCategory>(), currentUser.Role);
+                    return new DataForm<ProductCategory>(new DeletableDataProvider<ProductCategory>(), currentUser.Role);
                 case EmbaddedForm.ProductPickingDataForm:
                     return new DataForm<ProductPicking>(new DataProvider<ProductPicking>(), currentUser.Role);
                 case EmbaddedForm.ProductWriteOfDataForm:
                     return new DataForm<ProductWriteOf>(new DataProvider<ProductWriteOf>(), currentUser.Role);
                 case EmbaddedForm.UserDataForm: 
-                    return new DataForm<User>(new DataProvider<User>(), currentUser.Role);
+                    return new DataForm<User>(new DeletableDataProvider<User>(), currentUser.Role);
                 case EmbaddedForm.WarehouseDataForm:
-                    return new DataForm<Warehouse>(new DataProvider<Warehouse>(), currentUser.Role);
+                    return new DataForm<Warehouse>(new DeletableDataProvider<Warehouse>(), currentUser.Role);
 
                 // ProductOperationsForms
                 case EmbaddedForm.CreatePickingForm:

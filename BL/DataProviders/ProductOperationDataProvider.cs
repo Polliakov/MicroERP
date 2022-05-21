@@ -21,6 +21,8 @@ namespace BL.DataProviders
         private readonly MicroERPContext db = MicroERPContextSingleton.Instanse;
         private readonly IQueryable<TEntity> set;
 
-        public IQueryable<TEntity> GetData() => set;
+        public IQueryable<TEntity> GetData(bool getDeleted = false) => set;
+
+        public void Save() => db.SaveChanges();
     }
 }

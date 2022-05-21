@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataProviders\DataProvider.cs" />
+    <Compile Include="DataProviders\DeletableDataProvider.cs" />
     <Compile Include="DataProviders\IDataProvider.cs" />
     <Compile Include="DataProviders\ProducEntryDataProvider.cs" />
     <Compile Include="DataProviders\ProductOperationDataProvider.cs" />

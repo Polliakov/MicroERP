@@ -1,5 +1,9 @@
-﻿using DesktopUI.Forms;
+﻿using BL.DataProviders;
+using DataBase;
+using DataBase.Entities;
+using DesktopUI.Forms;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace DesktopUI
@@ -12,6 +16,12 @@ namespace DesktopUI
         [STAThread]
         static void Main()
         {
+            //var usersCount = new DataProvider<User>().GetData().Count();
+            //if (usersCount == 0)
+            //{
+            //    DefaultAdministrator.SetAlive();
+            //}
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new AuthenticationForm());

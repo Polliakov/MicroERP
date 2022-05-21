@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using DataBase.Attributes;
+using DataBase.Interfaces;
 
 namespace DataBase.Entities
 {
-    public class Product
+    public class Product : IDeletable
     {
         [Browsable(false)]
         public int Id { get; set; }
@@ -23,6 +25,9 @@ namespace DataBase.Entities
 
         [Browsable(false)]
         public int CategoryId { get; set; }
+
+        [Browsable(false)]
+        public DateTime? Deleted { get; set; }
 
         [Browsable(false)]
         public virtual ProductCategory Category { get; set; }

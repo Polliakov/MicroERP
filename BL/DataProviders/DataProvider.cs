@@ -18,16 +18,16 @@ namespace BL.DataProviders
 
         public void Add(TEntity entity) => set.Add(entity);
 
-        public void Save() => db.SaveChanges();
-
         public void Create(TEntity entity)
         {
             set.Add(entity);
             db.SaveChanges();
         }
 
-        IQueryable<TEntity> IDataProvider<TEntity>.GetData() => GetData();
+        IQueryable<TEntity> IDataProvider<TEntity>.GetData(bool getDeleted) => GetData(getDeleted);
 
-        public DbSet<TEntity> GetData() => set;
+        public DbSet<TEntity> GetData(bool getDeleted = false) => set;
+
+        public void Save() => db.SaveChanges();
     }
 }
