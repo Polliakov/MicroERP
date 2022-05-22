@@ -2,14 +2,6 @@
 using DataBase.Entities;
 using DesktopUI.Validation;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Entity;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DesktopUI.Forms.AddingForms
@@ -19,18 +11,18 @@ namespace DesktopUI.Forms.AddingForms
         public AddProductForm()
         {
             InitializeComponent();
-            var set = productCategoryDP.GetData();
-            set.Load();
-            cbCategory.DataSource = set.Local.ToBindingList();
-            cbCategory.SelectedIndex = 0;
+            cbCategory.DataSource = productCategoryDP.GetBindingList();
         }
 
         private readonly DataProvider<Product> productDP = new DataProvider<Product>();
-        private readonly DataProvider<ProductCategory> productCategoryDP = new DataProvider<ProductCategory>();
+        private readonly DeletableDataProvider<ProductCategory> productCategoryDP =
+            new DeletableDataProvider<ProductCategory>();
 
         private void BtnEnter_Click(object sender, EventArgs e)
         {
             if (!tbName.Required("Наименование"))
+                return;
+            if (!cbCategory.Required("Выберите категорию."))
                 return;
 
             var product = new Product

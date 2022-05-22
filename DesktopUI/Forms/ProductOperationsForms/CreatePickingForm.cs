@@ -3,8 +3,8 @@ using BL.Security;
 using BL.Services;
 using DataBase.Entities;
 using DesktopUI.CustomControls.ProductEntryListSelector;
+using DesktopUI.Validation;
 using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -19,24 +19,19 @@ namespace DesktopUI.Forms.ProductOperationsForms
             InitializeComponent();
             InitializeProductEntryListSelector();
 
-            var dataProvider = new DataProvider<Warehouse>();
-            var set = dataProvider.GetData();
-            set.Load();
-            cbWarehouse.DataSource = set.Local.ToBindingList();
+            var dataProvider = new DeletableDataProvider<Warehouse>();
+            cbWarehouse.DataSource = dataProvider.GetBindingList();
         }
 
         private readonly CreatePickingService service;
-        private readonly ProductEntryListSelector<ProductInPicking> productEntryListSelector = 
+        private readonly ProductEntryListSelector<ProductInPicking> productEntryListSelector =
             new ProductEntryListSelector<ProductInPicking>();
 
         private void BtnEnter_Click(object sender, EventArgs e)
         {
-            if (cbWarehouse.SelectedIndex == -1)
-            {
-                MessageBox.Show("Выберите склад.");
-                cbWarehouse.Focus();
+            if (cbWarehouse.Required("Выберите склад."))
                 return;
-            }
+
             var entries = productEntryListSelector.GetEntries();
             if (entries.Count() == 0)
             {

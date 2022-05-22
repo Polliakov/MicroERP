@@ -32,8 +32,8 @@ namespace DesktopUI.Forms
             this.pnlTop = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.cbCurrentWarehouse = new System.Windows.Forms.ComboBox();
-            this.sideMenu = new DesktopUI.CustomControls.SideMenu.SideMenu();
             this.formTabControl = new DesktopUI.CustomControls.FormTabControl();
+            this.sideMenu = new DesktopUI.CustomControls.SideMenu.SideMenu();
             this.pnlTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,6 +70,15 @@ namespace DesktopUI.Forms
             this.cbCurrentWarehouse.TabIndex = 0;
             this.cbCurrentWarehouse.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CbCurrentWarehouse_KeyPress);
             // 
+            // formTabControl
+            // 
+            this.formTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.formTabControl.Location = new System.Drawing.Point(200, 40);
+            this.formTabControl.Margin = new System.Windows.Forms.Padding(0);
+            this.formTabControl.Name = "formTabControl";
+            this.formTabControl.Size = new System.Drawing.Size(984, 621);
+            this.formTabControl.TabIndex = 4;
+            // 
             // sideMenu
             // 
             this.sideMenu.AutoScroll = true;
@@ -79,15 +88,6 @@ namespace DesktopUI.Forms
             this.sideMenu.Name = "sideMenu";
             this.sideMenu.Size = new System.Drawing.Size(200, 621);
             this.sideMenu.TabIndex = 5;
-            // 
-            // formTabControl
-            // 
-            this.formTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.formTabControl.Location = new System.Drawing.Point(200, 40);
-            this.formTabControl.Margin = new System.Windows.Forms.Padding(0);
-            this.formTabControl.Name = "formTabControl";
-            this.formTabControl.Size = new System.Drawing.Size(984, 621);
-            this.formTabControl.TabIndex = 4;
             // 
             // MainForm
             // 

@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System.ComponentModel;
+using System.Linq;
 
 namespace BL.DataProviders
 {
-    public interface IDataProvider<out T>
+    public interface IDataProvider<T>
     {
-        IQueryable<T> GetData(bool getDeleted = false);
+        IQueryable<T> GetData();
+        BindingList<T> GetBindingList();
         void Save();
     }
 }

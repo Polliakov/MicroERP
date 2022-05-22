@@ -2,6 +2,9 @@
 using DataBase.Contexts;
 using DataBase.Entities;
 using DataBase.Interfaces;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 
 namespace BL.DataProviders
@@ -36,7 +39,15 @@ namespace BL.DataProviders
         private readonly MicroERPContext db = MicroERPContextSingleton.Instanse;
         private readonly IQueryable<ProductEntryModel> set;
 
-        public IQueryable<ProductEntryModel> GetData(bool getDeleted = false) => set;
+        public IQueryable<ProductEntryModel> GetData() => set;
+
+        public BindingList<ProductEntryModel> GetBindingList()
+        {
+            var list = (IList<ProductEntryModel>)GetData().ToListAsync().Result;
+            return new BindingList<ProductEntryModel>(list);
+        }
+
+        public void Save() => db.SaveChanges();
 
         private IQueryable<ProductEntryModel> SelectProductEntries(IQueryable<IProductEntry> entries)
         {
@@ -49,7 +60,5 @@ namespace BL.DataProviders
                 Product = pw.Product,
             });
         }
-
-        public void Save() => db.SaveChanges();
     }
 }

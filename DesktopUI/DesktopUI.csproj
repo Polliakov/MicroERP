@@ -156,6 +156,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\ComboBoxValidationExtensions.cs" />
     <Compile Include="Validation\TextBoxValidationExtensions.cs" />
     <Compile Include="Forms\ViewForms\ChequeViewForm.cs">
       <SubType>Form</SubType>

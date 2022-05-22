@@ -1,9 +1,7 @@
 ﻿using BL.DataProviders;
 using BL.Security;
-using DataBase.Contexts;
 using DataBase.Entities;
 using System;
-using System.Data.Entity;
 using System.Windows.Forms;
 
 namespace DesktopUI.Forms
@@ -15,20 +13,20 @@ namespace DesktopUI.Forms
             this.currentUser = currentUser;
 
             InitializeComponent();
-            AddSideMenuItems();
             InitializeCbCurrentWarehouse();
+            AddSideMenuItems();
 
             var currentWarehouse = GetCurrentWarehouse();
-            embaddedFormFactory = new FormFactory(currentUser, currentWarehouse);
+            formFactory = new FormFactory(currentUser, currentWarehouse);
 
             cbCurrentWarehouse.SelectedIndexChanged += (_, e) => WarehouseChanged?.Invoke(GetCurrentWarehouse());
-            WarehouseChanged += embaddedFormFactory.WarehouseChanged;
+            WarehouseChanged += formFactory.WarehouseChanged;
             sideMenu.ItemClick += SideMenu_ItemClick;
         }
 
         public event Action<Warehouse> WarehouseChanged;
 
-        private readonly FormFactory embaddedFormFactory;
+        private readonly FormFactory formFactory;
         private readonly AuthenticatedUser currentUser;
 
         private Warehouse GetCurrentWarehouse() => (Warehouse)cbCurrentWarehouse.SelectedItem;
@@ -56,10 +54,8 @@ namespace DesktopUI.Forms
 
         private void InitializeCbCurrentWarehouse()
         {
-            var dataProvider = new DataProvider<Warehouse>();
-            var set = dataProvider.GetData();
-            set.Load();
-            cbCurrentWarehouse.DataSource = set.Local.ToBindingList();
+            var dataProvider = new DeletableDataProvider<Warehouse>();
+            cbCurrentWarehouse.DataSource = dataProvider.GetBindingList();
         }
 
         private void SideMenu_ItemClick(string title, object tag)
@@ -68,12 +64,11 @@ namespace DesktopUI.Forms
                 throw new NotSupportedException();
 
             var formType = (EmbaddedForm)tag;
-            formTabControl.AddTab(title, embaddedFormFactory.New(formType));
+            formTabControl.AddTab(title, formFactory.New(formType));
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MicroERPContextSingleton.Instanse.SaveChanges();
             Application.Exit();
         }
 

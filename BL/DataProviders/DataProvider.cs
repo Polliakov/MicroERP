@@ -1,4 +1,6 @@
 ﻿using DataBase.Contexts;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 
@@ -24,9 +26,13 @@ namespace BL.DataProviders
             db.SaveChanges();
         }
 
-        IQueryable<TEntity> IDataProvider<TEntity>.GetData(bool getDeleted) => GetData(getDeleted);
+        public IQueryable<TEntity> GetData() => set;
 
-        public DbSet<TEntity> GetData(bool getDeleted = false) => set;
+        public BindingList<TEntity> GetBindingList()
+        {
+            var list = (IList<TEntity>)GetData().ToListAsync().Result;
+            return new BindingList<TEntity>(list);
+        }
 
         public void Save() => db.SaveChanges();
     }
