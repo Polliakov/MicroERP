@@ -29,12 +29,13 @@ namespace DesktopUI.Forms
 
     public class FormFactory
     {
-        public FormFactory(AuthenticatedUser currentUser, Warehouse warehouse)
+        public FormFactory(MainForm mainForm, AuthenticatedUser currentUser)
         {
+            this.mainForm = mainForm;
             this.currentUser = currentUser;
-            this.warehouse = warehouse;
         }
 
+        private readonly MainForm mainForm;
         private readonly AuthenticatedUser currentUser;
         private Warehouse warehouse;
 
@@ -62,8 +63,12 @@ namespace DesktopUI.Forms
                 case EmbaddedForm.CreatePickingForm:
                     return new CreatePickingForm(currentUser);
                 case EmbaddedForm.CreateChequeForm:
+                    if (warehouse is null)
+                        throw new WarehouseIsNullException();
                     return new CreateCheqeForm(currentUser, warehouse);
                 case EmbaddedForm.CreateWriteOfForm:
+                    if (warehouse is null)
+                        throw new WarehouseIsNullException();
                     return new CreateWriteOfForm(currentUser, warehouse);
 
                 // AddingForms
@@ -72,7 +77,9 @@ namespace DesktopUI.Forms
                 case EmbaddedForm.AddProductCategoryForm:
                     return new AddProductCategoryForm();
                 case EmbaddedForm.AddWarehouseForm:
-                    return new AddWarehouseForm();
+                    var addWarehouseForm = new AddWarehouseForm();
+                    addWarehouseForm.WarehouseAdded += mainForm.OnWarehouseAdded;
+                    return addWarehouseForm;
                 case EmbaddedForm.AddUserForm:
                     return new AddUserForm();
             }

@@ -1,9 +1,5 @@
-﻿using BL.DataProviders;
-using DataBase;
-using DataBase.Entities;
-using DesktopUI.Forms;
+﻿using DesktopUI.Forms;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace DesktopUI

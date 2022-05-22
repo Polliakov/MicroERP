@@ -29,7 +29,7 @@ namespace DesktopUI.Forms.ProductOperationsForms
 
         private void BtnEnter_Click(object sender, EventArgs e)
         {
-            if (cbWarehouse.Required("Выберите склад."))
+            if (!cbWarehouse.Required("Выберите склад."))
                 return;
 
             var entries = productEntryListSelector.GetEntries();

@@ -13,21 +13,27 @@ namespace DesktopUI.Forms
             this.currentUser = currentUser;
 
             InitializeComponent();
-            InitializeCbCurrentWarehouse();
+            UpdateCbCurrentWarehouse();
             AddSideMenuItems();
 
-            var currentWarehouse = GetCurrentWarehouse();
-            formFactory = new FormFactory(currentUser, currentWarehouse);
-
-            cbCurrentWarehouse.SelectedIndexChanged += (_, e) => WarehouseChanged?.Invoke(GetCurrentWarehouse());
+            formFactory = new FormFactory(this, currentUser);
             WarehouseChanged += formFactory.WarehouseChanged;
+
+            cbCurrentWarehouse.SelectedIndexChanged += (_, e) => WarehouseChanged.Invoke(GetCurrentWarehouse());
             sideMenu.ItemClick += SideMenu_ItemClick;
+
+            WarehouseChanged.Invoke(GetCurrentWarehouse());
         }
 
         public event Action<Warehouse> WarehouseChanged;
 
         private readonly FormFactory formFactory;
         private readonly AuthenticatedUser currentUser;
+
+        public void OnWarehouseAdded(Warehouse warehouse)
+        {
+            UpdateCbCurrentWarehouse();
+        }
 
         private Warehouse GetCurrentWarehouse() => (Warehouse)cbCurrentWarehouse.SelectedItem;
 
@@ -52,19 +58,28 @@ namespace DesktopUI.Forms
             sideMenu.AddItem("Списание товара", EmbaddedForm.CreateWriteOfForm);
         }
 
-        private void InitializeCbCurrentWarehouse()
+        private void UpdateCbCurrentWarehouse()
         {
+            int selected = cbCurrentWarehouse.SelectedIndex;
             var dataProvider = new DeletableDataProvider<Warehouse>();
             cbCurrentWarehouse.DataSource = dataProvider.GetBindingList();
+            if (selected != -1)
+                cbCurrentWarehouse.SelectedIndex = selected;
         }
 
         private void SideMenu_ItemClick(string title, object tag)
         {
             if (!(tag is EmbaddedForm))
                 throw new NotSupportedException();
-
-            var formType = (EmbaddedForm)tag;
-            formTabControl.AddTab(title, formFactory.New(formType));
+            try
+            {
+                var formType = (EmbaddedForm)tag;
+                formTabControl.AddTab(title, formFactory.New(formType));
+            }
+            catch (WarehouseIsNullException)
+            {
+                MessageBox.Show("Сначала нужно добавить склад.", "Отсутствуют склады");
+            }
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

@@ -13,6 +13,8 @@ namespace DesktopUI.Forms.AddingForms
             InitializeComponent();
         }
 
+        public event Action<Warehouse> WarehouseAdded;
+
         private readonly DataProvider<Warehouse> dataProvider = new DataProvider<Warehouse>();
 
         private void BtnEnter_Click(object sender, EventArgs e)
@@ -30,6 +32,7 @@ namespace DesktopUI.Forms.AddingForms
             {
                 dataProvider.Create(warehouse);
                 ClearFields();
+                WarehouseAdded.Invoke(warehouse);
             }
             catch (Exception ex)
             {
