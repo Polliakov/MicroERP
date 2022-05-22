@@ -18,6 +18,7 @@ namespace DesktopUI.CustomControls
         {
             var formTab = new FormTab(title, pnlTabs, pnlChildForm, form);
             Tabs.Add(formTab);
+
             SetActive(formTab);
             formTab.Active += FormTab_Active;
             formTab.Close += FormTab_Close;
@@ -42,6 +43,14 @@ namespace DesktopUI.CustomControls
         private void FormTab_Close(FormTab sender)
         {
             Tabs.Remove(sender);
+            if (ActiveTab == sender)
+            {
+                if (Tabs.Count != 0)
+                    SetActive(Tabs[Tabs.Count - 1]);
+                else
+                    ActiveTab = null;
+            }
+            
             sender.Dispose();
         }
     }

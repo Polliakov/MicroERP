@@ -63,36 +63,59 @@ namespace DesktopUI.CustomControls.FormTabs
 
         private void InitializeComponents(string title, Control tabParent, Control formParent)
         {
-            btnTab = new Button();
-            btnTab.Dock = DockStyle.Left;
+            btnTab = new Button
+            {
+                Dock = DockStyle.Left,
+                FlatStyle = FlatStyle.Flat,
+                Name = title,
+                Size = new Size(32, 27),
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowOnly,
+                Padding = new Padding(0, 0, 12, 0),
+                TabIndex = 1,
+                Text = title,
+                Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 204),
+                TextAlign = ContentAlignment.MiddleLeft,
+                UseVisualStyleBackColor = false,
+                Parent = tabParent,
+            };
             btnTab.FlatAppearance.BorderSize = 0;
-            btnTab.FlatStyle = FlatStyle.Flat;
-            btnTab.Name = title;
-            btnTab.Size = new Size(100, 23);
-            btnTab.TabIndex = 1;
-            btnTab.Text = title;
-            btnTab.TextAlign = ContentAlignment.MiddleLeft;
-            btnTab.UseVisualStyleBackColor = false;
-            btnTab.Parent = tabParent;
+            btnTab.MouseEnter += Button_MouseEnter;
+            btnTab.MouseLeave += Button_MouseLeave;
             hiddenColor = btnTab.BackColor;
             activeColor = SystemColors.Control;
 
-            btnClose = new Button();
-            btnClose.Dock = DockStyle.Right;
+
+            btnClose = new Button
+            {
+                Dock = DockStyle.Right,
+                FlatStyle = FlatStyle.Flat,
+                Size = new Size(18, 27),
+                BackColor = Color.FromArgb(0, 240, 165, 160),
+                TabIndex = 1,
+                Text = string.Empty,
+                Font = new Font("Consolas", 10f),
+                UseVisualStyleBackColor = false,
+                Parent = btnTab,
+            };
             btnClose.FlatAppearance.BorderSize = 0;
-            btnClose.FlatStyle = FlatStyle.Flat;
-            btnClose.Size = new Size(16, 23);
-            btnClose.BackColor = Color.FromArgb(0, 240, 165, 160);
-            btnClose.TabIndex = 1;
-            btnClose.Text = "x";
-            btnClose.Font = new Font("Consolas", 10f);
-            btnClose.UseVisualStyleBackColor = false;
-            btnClose.Parent = btnTab;
+            btnClose.MouseEnter += Button_MouseEnter;
+            btnClose.MouseLeave += Button_MouseLeave;
 
             Form.TopLevel = false;
             Form.Dock = DockStyle.Fill;
             Form.FormBorderStyle = FormBorderStyle.None;
             Form.Parent = formParent;
+        }
+
+        private void Button_MouseEnter(object sender, EventArgs e)
+        {
+            btnClose.Text = "x";
+        }
+
+        private void Button_MouseLeave(object sender, EventArgs e)
+        {
+            btnClose.Text = string.Empty;
         }
     }
 }

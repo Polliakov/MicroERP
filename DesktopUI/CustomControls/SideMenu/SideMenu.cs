@@ -12,33 +12,48 @@ namespace DesktopUI.CustomControls.SideMenu
             InitializeComponent();
         }
 
-        public event Action<string, object> ItemClick;
+        public event Action<SideMenu, string, object> ItemClick;
+
+        public string Title { get => btnTitle.Text; set => btnTitle.Text = value; }
         public List<Button> Items { get; } = new List<Button>();
+
+        private bool isExpanded = true;
 
         public void AddItem(string title, object tag)
         {
             var item = NewItem(title, tag);
-            item.Click += (_, e) => ItemClick.Invoke(item.Name, item.Tag);
+            item.Click += (_, e) => ItemClick.Invoke(this, item.Name, item.Tag);
             Items.Add(item);
-            Controls.Add(item);
+            pnlItems.Controls.Add(item);
         }
 
         private Button NewItem(string title, object tag)
         {
-            var button = new Button();
-            button.Dock = DockStyle.Top;
+            var button = new Button
+            {
+                Dock = DockStyle.Top,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Microsoft Sans Serif", 10.75F, FontStyle.Regular, GraphicsUnit.Point, 204),
+                Location = new Point(0, 0),
+                Name = title,
+                Size = new Size(200, 30),
+                Padding = new Padding(10, 0, 0, 0),
+                TabIndex = 0,
+                Text = title,
+                TextAlign = ContentAlignment.MiddleLeft,
+                UseVisualStyleBackColor = false,
+                Tag = tag
+            };
             button.FlatAppearance.BorderSize = 0;
-            button.FlatStyle = FlatStyle.Flat;
-            button.Font = new Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            button.Location = new Point(0, 0);
-            button.Name = title;
-            button.Size = new Size(200, 30);
-            button.TabIndex = 0;
-            button.Text = title;
-            button.TextAlign = ContentAlignment.MiddleLeft;
-            button.UseVisualStyleBackColor = false;
-            button.Tag = tag;
             return button;
+        }
+
+        private void BtnTitle_Click(object sender, EventArgs e)
+        {
+            if (isExpanded)
+                Size = new Size(Size.Width, btnTitle.Size.Height);
+            AutoSize = !AutoSize;
+            isExpanded = !isExpanded;
         }
     }
 }

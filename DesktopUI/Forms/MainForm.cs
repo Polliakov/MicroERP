@@ -1,6 +1,7 @@
 ﻿using BL.DataProviders;
 using BL.Security;
 using DataBase.Entities;
+using DesktopUI.CustomControls.SideMenu;
 using System;
 using System.Windows.Forms;
 
@@ -15,12 +16,14 @@ namespace DesktopUI.Forms
             InitializeComponent();
             UpdateCbCurrentWarehouse();
             AddSideMenuItems();
+            lblCurrentUser.Text = currentUser.User.GetFullNameShort();
 
             formFactory = new FormFactory(this, currentUser);
             WarehouseChanged += formFactory.WarehouseChanged;
 
             cbCurrentWarehouse.SelectedIndexChanged += (_, e) => WarehouseChanged.Invoke(GetCurrentWarehouse());
-            sideMenu.ItemClick += SideMenu_ItemClick;
+            sideMenuView.ItemClick += SideMenu_ItemClick;
+            sideMenuAdd.ItemClick += SideMenu_ItemClick;
 
             WarehouseChanged.Invoke(GetCurrentWarehouse());
         }
@@ -39,23 +42,24 @@ namespace DesktopUI.Forms
 
         private void AddSideMenuItems()
         {
-            sideMenu.AddItem("Продажа товара", EmbaddedForm.CreateChequeForm);
-            sideMenu.AddItem("Продажи", EmbaddedForm.ChequeDataForm);
-            sideMenu.AddItem("Поставки", EmbaddedForm.ProductPickingDataForm);
-            sideMenu.AddItem("Списания", EmbaddedForm.ProductWriteOfDataForm);
-            sideMenu.AddItem("Товары", EmbaddedForm.ProductDataForm);
-            sideMenu.AddItem("Категории", EmbaddedForm.ProductCategoryDataForm);
-            sideMenu.AddItem("Склады", EmbaddedForm.WarehouseDataForm);
+            if (currentUser.Role == UserRole.Administrator)
+            {
+                sideMenuAdd.AddItem("Склад", EmbaddedForm.AddWarehouseForm);
+                sideMenuAdd.AddItem("Пользователь", EmbaddedForm.AddUserForm);
+                sideMenuAdd.AddItem("Категория", EmbaddedForm.AddProductCategoryForm);
+                sideMenuAdd.AddItem("Товар", EmbaddedForm.AddProductForm);
+                sideMenuAdd.AddItem("Списание", EmbaddedForm.CreateWriteOfForm);
+                sideMenuAdd.AddItem("Поставка", EmbaddedForm.CreatePickingForm);
+            }
+            sideMenuAdd.AddItem("Продажа", EmbaddedForm.CreateChequeForm);
 
-            if (currentUser.Role != UserRole.Administrator) return;
-
-            sideMenu.AddItem("Пользователи", EmbaddedForm.UserDataForm);
-            sideMenu.AddItem("Новый товар", EmbaddedForm.AddProductForm);
-            sideMenu.AddItem("Новая категория", EmbaddedForm.AddProductCategoryForm);
-            sideMenu.AddItem("Новый пользователь", EmbaddedForm.AddUserForm);
-            sideMenu.AddItem("Новый склад", EmbaddedForm.AddWarehouseForm);
-            sideMenu.AddItem("Новая поставка", EmbaddedForm.CreatePickingForm);
-            sideMenu.AddItem("Списание товара", EmbaddedForm.CreateWriteOfForm);
+            sideMenuView.AddItem("Склады", EmbaddedForm.WarehouseDataForm);
+            sideMenuView.AddItem("Пользователи", EmbaddedForm.UserDataForm);
+            sideMenuView.AddItem("Категории", EmbaddedForm.ProductCategoryDataForm);
+            sideMenuView.AddItem("Товары", EmbaddedForm.ProductDataForm);
+            sideMenuView.AddItem("Списания", EmbaddedForm.ProductWriteOfDataForm);
+            sideMenuView.AddItem("Поставки", EmbaddedForm.ProductPickingDataForm);
+            sideMenuView.AddItem("Продажи", EmbaddedForm.ChequeDataForm);
         }
 
         private void UpdateCbCurrentWarehouse()
@@ -67,10 +71,13 @@ namespace DesktopUI.Forms
                 cbCurrentWarehouse.SelectedIndex = selected;
         }
 
-        private void SideMenu_ItemClick(string title, object tag)
+        private void SideMenu_ItemClick(SideMenu sender, string title, object tag)
         {
             if (!(tag is EmbaddedForm))
                 throw new NotSupportedException();
+
+            if (sender == sideMenuAdd)
+                title = "+ " + title;
             try
             {
                 var formType = (EmbaddedForm)tag;
@@ -80,6 +87,13 @@ namespace DesktopUI.Forms
             {
                 MessageBox.Show("Сначала нужно добавить склад.", "Отсутствуют склады");
             }
+        }
+
+        private void LblCurrentUser_Click(object sender, EventArgs e)
+        {
+            var userView = ViewForms.ViewForm.NewFor(currentUser.User);
+            userView.Text = "Текущий пользователь";
+            userView.Show();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

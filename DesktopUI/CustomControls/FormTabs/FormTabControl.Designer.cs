@@ -38,24 +38,24 @@ namespace DesktopUI.CustomControls
             this.pnlTabs.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTabs.Location = new System.Drawing.Point(0, 0);
             this.pnlTabs.Name = "pnlTabs";
-            this.pnlTabs.Size = new System.Drawing.Size(883, 23);
+            this.pnlTabs.Size = new System.Drawing.Size(883, 27);
             this.pnlTabs.TabIndex = 2;
             // 
             // pnlChildForm
             // 
             this.pnlChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlChildForm.Location = new System.Drawing.Point(0, 23);
+            this.pnlChildForm.Location = new System.Drawing.Point(0, 27);
             this.pnlChildForm.Name = "pnlChildForm";
-            this.pnlChildForm.Size = new System.Drawing.Size(883, 591);
+            this.pnlChildForm.Size = new System.Drawing.Size(883, 587);
             this.pnlChildForm.TabIndex = 3;
             // 
-            // MainArea
+            // FormTabControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlChildForm);
             this.Controls.Add(this.pnlTabs);
-            this.Name = "MainArea";
+            this.Name = "FormTabControl";
             this.Size = new System.Drawing.Size(883, 614);
             this.ResumeLayout(false);
 

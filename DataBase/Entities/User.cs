@@ -56,9 +56,9 @@ namespace DataBase.Entities
         {
             string fullName = Surname;
             if (!string.IsNullOrEmpty(Name))
-                fullName += " " + Name[0];
+                fullName += $" {Name[0]}.";
             if (!string.IsNullOrEmpty(Patronymic))
-                fullName += " " + Patronymic[0];
+                fullName += $" {Patronymic[0]}.";
             return fullName;
         }
     }
