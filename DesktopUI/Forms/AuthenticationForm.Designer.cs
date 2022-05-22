@@ -29,6 +29,7 @@ namespace DesktopUI.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthenticationForm));
             this.tbLogin = new System.Windows.Forms.TextBox();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -141,6 +142,7 @@ namespace DesktopUI.Forms
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.tbLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AuthenticationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Вход в систему";

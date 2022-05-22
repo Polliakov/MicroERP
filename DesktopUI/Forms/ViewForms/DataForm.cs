@@ -18,6 +18,7 @@ namespace DesktopUI.Forms.ViewForms
             this.dataProvider = dataProvider;
 
             InitializeComponent();
+            Icon = Properties.Resources.icon;
 
             if (userRole == UserRole.Administrator && 
                 typeof(TEntity).GetInterface(nameof(IDeletable)) != null)

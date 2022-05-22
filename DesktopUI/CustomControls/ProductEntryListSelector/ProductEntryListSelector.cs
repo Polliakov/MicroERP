@@ -73,7 +73,7 @@ namespace DesktopUI.CustomControls.ProductEntryListSelector
 
         private void Initialize(IRefreshable entitySelector)
         {
-            btnRefreshData.BackgroundImage = (System.Drawing.Bitmap)Properties.Resources.ResourceManager.GetObject("RefreshIcon");
+            btnRefreshData.BackgroundImage = Properties.Resources.RefreshIcon;
             Clearing += entitySelector.RefreshData;
             btnRefreshData.Click += (_, e) => Clear();
             productEntryList.ItemChanged += () => ListChanged?.Invoke();

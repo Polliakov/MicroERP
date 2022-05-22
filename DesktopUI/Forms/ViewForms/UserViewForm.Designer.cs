@@ -29,6 +29,7 @@ namespace DesktopUI.Forms.ViewForms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserViewForm));
             this.lblSurname = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -214,6 +215,7 @@ namespace DesktopUI.Forms.ViewForms
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(400, 310);
             this.Name = "UserViewForm";
             this.Text = "Пользователь";

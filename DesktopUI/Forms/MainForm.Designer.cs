@@ -29,6 +29,7 @@ namespace DesktopUI.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.pnlTop = new System.Windows.Forms.Panel();
             this.lblCurrentUser = new System.Windows.Forms.Label();
             this.lblWarehouse = new System.Windows.Forms.Label();
@@ -166,6 +167,7 @@ namespace DesktopUI.Forms
             this.Controls.Add(this.pnlSideMenus);
             this.Controls.Add(this.pnlTopBorder);
             this.Controls.Add(this.pnlTop);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 700);
             this.Name = "MainForm";
             this.Text = "MainForm";
