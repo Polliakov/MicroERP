@@ -1,4 +1,4 @@
-﻿using DataBase.Contexts;
+﻿using BL.DataProviders;
 using DataBase.Entities;
 using System.Linq;
 
@@ -18,18 +18,18 @@ namespace BL.Security
 
         public static AuthenticatedUser Authenticate(string login, string password)
         {
-            using (var db = new MicroERPContext())
-            {
-                var user = db.Users.FirstOrDefault(u => u.PhoneNumber == login);
-                if (user is null)
-                    throw new UserIdentificationException();
+            var dataProvider = new DeletableDataProvider<User>();
 
-                var passwordHash = PasswordHash.Calculate(password, login);
-                if (!PasswordsAreEqual(user.Password, passwordHash))
-                    throw new UserAuthenticationException();
+            var user = dataProvider.GetData().FirstOrDefault(u => u.PhoneNumber == login);
+            if (user is null)
+                throw new UserIdentificationException();
 
-                return new AuthenticatedUser(user);
-            }
+            var passwordHash = PasswordHash.Calculate(password, login);
+            if (!PasswordsAreEqual(user.Password, passwordHash))
+                throw new UserAuthenticationException();
+
+            return new AuthenticatedUser(user);
+
         }
 
         private static bool PasswordsAreEqual(byte[] pass1, byte[] pass2)

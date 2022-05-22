@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DesktopUI.CustomControls.ProductEntryList
@@ -46,8 +47,16 @@ namespace DesktopUI.CustomControls.ProductEntryList
         private void Remove(ProductEntryListItem item)
         {
             Items.Remove(item);
-            item.Dispose();
+            item.Visible = false;
+            DefferedDispose(item);
             ItemChanged.Invoke();
+        }
+
+        // Avoiding of exception thats throwed on button's click event while button already disposed.
+        private async void DefferedDispose(IDisposable disposable)
+        {
+            await Task.Delay(5000);
+            disposable.Dispose();
         }
     }
 }

@@ -11,14 +11,17 @@ namespace DataBase
         {
             var db = MicroERPContextSingleton.Instanse;
             var adminsPhone = "10000000000";
+            var adminsName = "Default Admin";
 
-            var admin = db.Users.FirstOrDefault(u => u.PhoneNumber == adminsPhone);
+            var admin = db.Users.FirstOrDefault(u => u.PhoneNumber == adminsPhone &&
+                                                     u.Name == "_" &&
+                                                     u.Surname == adminsName);
             if (admin is null)
             {
                 db.Users.Add(new User
                 {
-                    Name = "admin",
-                    Surname = "admin",
+                    Name = "_",
+                    Surname = adminsName,
                     Patronymic = null,
                     PhoneNumber = adminsPhone,
                     // Password = "admin";

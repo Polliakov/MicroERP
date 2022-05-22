@@ -29,7 +29,10 @@ namespace DesktopUI.CustomControls.ProductEntryList
 
         public event Action<ProductEntryListItem> CountChanged;
         public event Action<ProductEntryListItem> Close;
+
         public IProductEntry ProductEntry { get; }
+        public bool Visible { get => btnItem.Visible; set => btnItem.Visible = value; }
+
 
         private Button btnItem;
         private Button btnClose;

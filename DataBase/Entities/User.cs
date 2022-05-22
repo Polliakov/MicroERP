@@ -24,7 +24,6 @@ namespace DataBase.Entities
         [DisplayName("Отчество")]
         public string Patronymic { get; set; }
 
-        [Index(IsUnique = true)]
         [Required]
         [Phone]
         [MinLength(6)]

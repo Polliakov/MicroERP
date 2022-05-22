@@ -30,5 +30,11 @@ namespace BL.DataProviders
         }
 
         public void Save() => db.SaveChanges();
+
+        public void Create(TDeletable entity)
+        {
+            set.Add(entity);
+            db.SaveChanges();
+        }
     }
 }

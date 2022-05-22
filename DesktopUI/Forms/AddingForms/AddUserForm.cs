@@ -1,5 +1,5 @@
-﻿using BL.DataProviders;
-using BL.Security;
+﻿using BL.Security;
+using BL.Services;
 using DataBase.Entities;
 using DesktopUI.Validation;
 using System;
@@ -8,7 +8,6 @@ using System.Windows.Forms;
 
 namespace DesktopUI.Forms.AddingForms
 {
-    // TODO: Выполнение проверки на существование номера телефона перед попыткой добавления пользователя.
     public partial class AddUserForm : Form
     {
         public AddUserForm()
@@ -17,7 +16,7 @@ namespace DesktopUI.Forms.AddingForms
             cbRole.SelectedIndex = 0;
         }
 
-        private readonly DataProvider<User> dataProvider = new DataProvider<User>();
+        private readonly CreateUserService service = new CreateUserService();
 
         private void BtnEnter_Click(object sender, EventArgs e)
         {
@@ -41,8 +40,13 @@ namespace DesktopUI.Forms.AddingForms
 
             try
             {
-                dataProvider.Create(user);
+                service.Create(user);
                 ClearFields();
+            }
+            catch (UserIdentificationException)
+            {
+                MessageBox.Show($"Пользователь с номером телефона {user.PhoneNumber} уже существует.");
+                tbPhoneNumber.Focus();
             }
             catch (Exception ex)
             {
