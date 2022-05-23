@@ -21,6 +21,11 @@ namespace BL.DataProviders
             set = db.Set<TEntity>().Where(po => po.UserId == user.Id);
         }
 
+        public ProductOperationDataProvider(Warehouse warehouse)
+        {
+            set = db.Set<TEntity>().Where(po => po.WarehouseId == warehouse.Id);
+        }
+
         private readonly MicroERPContext db = MicroERPContextSingleton.Instanse;
         private readonly IQueryable<TEntity> set;
 

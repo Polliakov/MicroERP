@@ -7,8 +7,10 @@ namespace DataBase.Interfaces
     {
         int Id { get; set; }
         int UserId { get; set; }
+        int WarehouseId { get; set; }
         DateTime Timestamp { get; set; }
 
         User User { get; set; }
+        Warehouse Warehouse { get; set; }
     }
 }

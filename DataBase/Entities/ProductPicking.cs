@@ -13,10 +13,16 @@ namespace DataBase.Entities
         [Browsable(false)]
         public int UserId { get; set; }
 
+        [Browsable(false)]
+        public int WarehouseId { get; set; }
+
         [DisplayName("Время")]
         public DateTime Timestamp { get; set; }
 
         public virtual List<ProductInPicking> Items { get; set; } = new List<ProductInPicking>();
+        [Browsable(false)]
         public virtual User User { get; set; }
+        [Browsable(false)]
+        public virtual Warehouse Warehouse { get; set; }
     }
 }

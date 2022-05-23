@@ -29,6 +29,7 @@ namespace DesktopUI.Forms.ProductOperationsForms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateCheqeForm));
             this.pnlProductEntryListSelector = new System.Windows.Forms.Panel();
             this.btnEnter = new System.Windows.Forms.Button();
             this.lblTotal = new System.Windows.Forms.Label();
@@ -77,6 +78,7 @@ namespace DesktopUI.Forms.ProductOperationsForms
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.pnlProductEntryListSelector);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateCheqeForm";
             this.Text = "Продажа товаров";
             this.ResumeLayout(false);

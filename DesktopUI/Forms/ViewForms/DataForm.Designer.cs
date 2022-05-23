@@ -35,6 +35,7 @@ namespace DesktopUI.Forms.ViewForms
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.btnRefreshData = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,7 +79,7 @@ namespace DesktopUI.Forms.ViewForms
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(884, 485);
+            this.dataGridView.Size = new System.Drawing.Size(560, 412);
             this.dataGridView.TabIndex = 2;
             this.dataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView_CellMouseDoubleClick);
             // 
@@ -89,7 +90,7 @@ namespace DesktopUI.Forms.ViewForms
             this.btnRefreshData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnRefreshData.FlatAppearance.BorderSize = 0;
             this.btnRefreshData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefreshData.Location = new System.Drawing.Point(873, 13);
+            this.btnRefreshData.Location = new System.Drawing.Point(549, 13);
             this.btnRefreshData.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
             this.btnRefreshData.Name = "btnRefreshData";
             this.btnRefreshData.Size = new System.Drawing.Size(20, 20);
@@ -111,14 +112,28 @@ namespace DesktopUI.Forms.ViewForms
             this.btnDelete.Visible = false;
             this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
+            // lblTitle
+            // 
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblTitle.Location = new System.Drawing.Point(112, 17);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(29, 0, 3, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(361, 16);
+            this.lblTitle.TabIndex = 8;
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // DataForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(908, 534);
+            this.ClientSize = new System.Drawing.Size(584, 461);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnRefreshData);
             this.Controls.Add(this.dataGridView);
+            this.MinimumSize = new System.Drawing.Size(600, 500);
             this.Name = "DataForm";
             this.Text = "DataForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
@@ -131,5 +146,6 @@ namespace DesktopUI.Forms.ViewForms
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button btnRefreshData;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label lblTitle;
     }
 }

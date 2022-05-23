@@ -29,6 +29,7 @@ namespace DesktopUI.Forms.AddingForms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddWarehouseForm));
             this.label1 = new System.Windows.Forms.Label();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbAddress = new System.Windows.Forms.TextBox();
@@ -106,6 +107,7 @@ namespace DesktopUI.Forms.AddingForms
             this.Controls.Add(this.tbAddress);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddWarehouseForm";
             this.Text = "Добавление склада";
             this.ResumeLayout(false);

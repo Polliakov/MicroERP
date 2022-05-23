@@ -36,6 +36,7 @@ namespace BL.Services
                 Items = productEntries.ToList(),
                 Description = description,
                 UserId = user.User.Id,
+                WarehouseId = warehouse.Id,
                 Timestamp = DateTime.Now,
             });
         }

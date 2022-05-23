@@ -29,6 +29,7 @@ namespace DesktopUI.Forms.AddingForms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddProductForm));
             this.label3 = new System.Windows.Forms.Label();
             this.nmcPrice = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
@@ -167,6 +168,7 @@ namespace DesktopUI.Forms.AddingForms
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddProductForm";
             this.Text = "Добавление товара";
             ((System.ComponentModel.ISupportInitialize)(this.nmcPrice)).EndInit();

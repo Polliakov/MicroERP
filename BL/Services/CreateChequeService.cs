@@ -4,8 +4,6 @@ using DataBase.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BL.Services
 {
@@ -36,6 +34,7 @@ namespace BL.Services
                 Items = productSells.ToList(),
                 Total = total,
                 UserId = user.User.Id,
+                WarehouseId = warehouse.Id,
                 Timestamp = DateTime.Now,
             });
         }

@@ -29,6 +29,7 @@ namespace DesktopUI.Forms.ProductOperationsForms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateWriteOfForm));
             this.btnEnter = new System.Windows.Forms.Button();
             this.pnlProductEntryListSelector = new System.Windows.Forms.Panel();
             this.tbDescription = new System.Windows.Forms.TextBox();
@@ -90,6 +91,7 @@ namespace DesktopUI.Forms.ProductOperationsForms
             this.Controls.Add(this.tbDescription);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.pnlProductEntryListSelector);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateWriteOfForm";
             this.Text = "Списание товров";
             this.ResumeLayout(false);

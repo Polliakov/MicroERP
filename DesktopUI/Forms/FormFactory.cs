@@ -43,17 +43,32 @@ namespace DesktopUI.Forms
         {
             switch (formType)
             {
-                // DataForms
+                // DataForms - IProductOperation
                 case EmbaddedForm.ChequeDataForm:
-                    return new DataForm<Cheque>(new DataProvider<Cheque>(), currentUser.Role);
-                case EmbaddedForm.ProductDataForm: 
+                    CheckWarehouseIsNull();
+                    return new DataForm<Cheque>(
+                        new ProductOperationDataProvider<Cheque>(warehouse),
+                        currentUser.Role)
+                        { Title = warehouse.ToString() };
+                case EmbaddedForm.ProductPickingDataForm:
+                    CheckWarehouseIsNull();
+                    return new DataForm<ProductPicking>(
+                        new ProductOperationDataProvider<ProductPicking>(warehouse), 
+                        currentUser.Role)
+                        { Title = warehouse.ToString() };
+                case EmbaddedForm.ProductWriteOfDataForm:
+                    CheckWarehouseIsNull();
+                    return new DataForm<ProductWriteOf>(
+                        new ProductOperationDataProvider<ProductWriteOf>(warehouse), 
+                        currentUser.Role)
+                        { Title = warehouse.ToString() };
+
+
+                // DataForms - IDeletable
+                case EmbaddedForm.ProductDataForm:
                     return new DataForm<Product>(new DeletableDataProvider<Product>(), currentUser.Role);
                 case EmbaddedForm.ProductCategoryDataForm:
                     return new DataForm<ProductCategory>(new DeletableDataProvider<ProductCategory>(), currentUser.Role);
-                case EmbaddedForm.ProductPickingDataForm:
-                    return new DataForm<ProductPicking>(new DataProvider<ProductPicking>(), currentUser.Role);
-                case EmbaddedForm.ProductWriteOfDataForm:
-                    return new DataForm<ProductWriteOf>(new DataProvider<ProductWriteOf>(), currentUser.Role);
                 case EmbaddedForm.UserDataForm: 
                     return new DataForm<User>(new DeletableDataProvider<User>(), currentUser.Role);
                 case EmbaddedForm.WarehouseDataForm:
@@ -61,14 +76,13 @@ namespace DesktopUI.Forms
 
                 // ProductOperationsForms
                 case EmbaddedForm.CreatePickingForm:
-                    return new CreatePickingForm(currentUser);
+                    CheckWarehouseIsNull();
+                    return new CreatePickingForm(currentUser, warehouse);
                 case EmbaddedForm.CreateChequeForm:
-                    if (warehouse is null)
-                        throw new WarehouseIsNullException();
+                    CheckWarehouseIsNull();
                     return new CreateCheqeForm(currentUser, warehouse);
                 case EmbaddedForm.CreateWriteOfForm:
-                    if (warehouse is null)
-                        throw new WarehouseIsNullException();
+                    CheckWarehouseIsNull();
                     return new CreateWriteOfForm(currentUser, warehouse);
 
                 // AddingForms
@@ -89,6 +103,12 @@ namespace DesktopUI.Forms
         public void WarehouseChanged(Warehouse warehouse)
         {
             this.warehouse = warehouse;
+        }
+
+        private void CheckWarehouseIsNull()
+        {
+            if (warehouse is null)
+                throw new WarehouseIsNullException();
         }
     }
 }

@@ -30,6 +30,8 @@ namespace DesktopUI.Forms.ViewForms
             RefreshData();
         }
 
+        public string Title { get => lblTitle.Text; set => lblTitle.Text = value; }
+
         private readonly IDataProvider<TEntity> dataProvider;
         private readonly IQueryable<TEntity> data;
 

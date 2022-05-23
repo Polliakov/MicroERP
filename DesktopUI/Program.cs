@@ -16,10 +16,15 @@ namespace DesktopUI
         [STAThread]
         static void Main()
         {
-            var usersCount = new DeletableDataProvider<User>().GetData().Count();
-            if (usersCount == 0)
+            try
             {
-                DefaultAdministrator.SetAlive();
+                var usersCount = new DeletableDataProvider<User>().GetData().Count();
+                if (usersCount == 0)
+                    DefaultAdministrator.SetAlive();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             Application.EnableVisualStyles();

@@ -1,9 +1,7 @@
-﻿using BL.DataProviders;
-using BL.Security;
+﻿using BL.Security;
 using BL.Services;
 using DataBase.Entities;
 using DesktopUI.CustomControls.ProductEntryListSelector;
-using DesktopUI.Validation;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,15 +10,12 @@ namespace DesktopUI.Forms.ProductOperationsForms
 {
     public partial class CreatePickingForm : Form
     {
-        public CreatePickingForm(AuthenticatedUser currentUser)
+        public CreatePickingForm(AuthenticatedUser currentUser, Warehouse warehouse)
         {
-            service = new CreatePickingService(currentUser);
+            service = new CreatePickingService(currentUser, warehouse);
 
             InitializeComponent();
             InitializeProductEntryListSelector();
-
-            var dataProvider = new DeletableDataProvider<Warehouse>();
-            cbWarehouse.DataSource = dataProvider.GetBindingList();
         }
 
         private readonly CreatePickingService service;
@@ -29,9 +24,6 @@ namespace DesktopUI.Forms.ProductOperationsForms
 
         private void BtnEnter_Click(object sender, EventArgs e)
         {
-            if (!cbWarehouse.Required("Выберите склад."))
-                return;
-
             var entries = productEntryListSelector.GetEntries();
             if (entries.Count() == 0)
             {
@@ -39,10 +31,9 @@ namespace DesktopUI.Forms.ProductOperationsForms
                 return;
             }
 
-            var warehouse = (Warehouse)cbWarehouse.SelectedItem;
             try
             {
-                service.Create(entries, warehouse);
+                service.Create(entries);
                 productEntryListSelector.Clear();
             }
             catch (Exception ex)
