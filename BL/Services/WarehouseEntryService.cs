@@ -39,22 +39,29 @@ namespace BL.Services
         public void WriteOfEntries(IEnumerable<IProductEntry> productEntries, Warehouse warehouse)
         {
             var warehouseEntries = dataProvider.GetData();
-            var PeWeMatches = productEntries.Select(pe =>
-                                     (productEntry: pe,
-                                      warehouseEntry: warehouseEntries.FirstOrDefault(we =>
+            var peWeMatches = productEntries.Select(pe => new
+                                     { 
+                                      productEntry = pe,
+                                      warehouseEntry = warehouseEntries.FirstOrDefault(we =>
                                                        we.Warehouse.Id == warehouse.Id &&
                                                        we.Product.Id == pe.Product.Id)
-                                     ));
+                                     });
 
-            foreach (var (productEntry, warehouseEntry) in PeWeMatches)
+            foreach (var peWeMatch in peWeMatches)
             {
+                var productEntry = peWeMatch.productEntry;
+                var warehouseEntry = peWeMatch.warehouseEntry;
+                
                 if ((warehouseEntry is null) || (productEntry.Count > warehouseEntry.Count))
                     throw new WarehouseWriteOfException(productEntry.Product, productEntry.Count,
                                                         warehouse, (warehouseEntry?.Count ?? 0));
             }
 
-            foreach (var (productEntry, warehouseEntry) in PeWeMatches)
+            foreach (var peWeMatch in peWeMatches)
             {
+                var productEntry = peWeMatch.productEntry;
+                var warehouseEntry = peWeMatch.warehouseEntry;
+
                 warehouseEntry.Count -= productEntry.Count;
             }
         }
