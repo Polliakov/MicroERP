@@ -66,6 +66,7 @@
     <Compile Include="Services\CreatePickingService.cs" />
     <Compile Include="Services\CreateUserService.cs" />
     <Compile Include="Services\CreateWriteOfService.cs" />
+    <Compile Include="Services\UserSessionService.cs" />
     <Compile Include="Services\WarehouseEntryService.cs" />
     <Compile Include="Services\WarehouseWriteOfException.cs" />
   </ItemGroup>

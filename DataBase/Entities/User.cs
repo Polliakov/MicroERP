@@ -1,4 +1,5 @@
-﻿using DataBase.Interfaces;
+﻿using DataBase.Attributes;
+using DataBase.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,6 +37,7 @@ namespace DataBase.Entities
         public byte[] Password { get; set; }
 
         [DisplayName("Роль")]
+        [TypeConverter(typeof(UserRoleConverter))]
         public UserRole Role { get; set; }
 
         [Browsable(false)]

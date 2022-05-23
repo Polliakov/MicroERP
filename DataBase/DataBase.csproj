@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Attributes\DecimalPrecisionAttribute.cs" />
     <Compile Include="Attributes\DecimalPrecisionAttributeConvention.cs" />
+    <Compile Include="Attributes\UserRoleConverter.cs" />
     <Compile Include="Contexts\MicroERPContext.cs" />
     <Compile Include="Contexts\MicroERPContextSingleton.cs" />
     <Compile Include="DefaultAdministrator.cs" />

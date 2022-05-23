@@ -1,5 +1,6 @@
 ﻿using BL.DataProviders;
 using BL.Security;
+using BL.Services;
 using DataBase.Entities;
 using DesktopUI.CustomControls.SideMenu;
 using System;
@@ -14,8 +15,9 @@ namespace DesktopUI.Forms
             this.currentUser = currentUser;
 
             InitializeComponent();
-            UpdateCbCurrentWarehouse();
             AddSideMenuItems();
+            UpdateCbCurrentWarehouse();
+            LoadCbWarehouseIndex();
             lblCurrentUser.Text = currentUser.User.GetFullNameShort();
 
             formFactory = new FormFactory(this, currentUser);
@@ -76,8 +78,7 @@ namespace DesktopUI.Forms
             if (!(tag is EmbaddedForm))
                 throw new NotSupportedException();
 
-            if (sender == sideMenuAdd)
-                title = "+ " + title;
+            if (sender == sideMenuAdd) title = "+ " + title;
             try
             {
                 var formType = (EmbaddedForm)tag;
@@ -96,8 +97,28 @@ namespace DesktopUI.Forms
             userView.Show();
         }
 
+        private void SaveCbWarehouseIndex()
+        {
+            var index = cbCurrentWarehouse.SelectedIndex;
+            new UserSessionService().SetCurrentWarehousehouseIndex(index);
+        }
+
+        private void LoadCbWarehouseIndex()
+        {
+            try
+            {
+                var index = new UserSessionService().GetCurrentWarehousehouseIndex();
+                if (index == -1) return;
+                if (cbCurrentWarehouse.Items.Count > index)
+                    cbCurrentWarehouse.SelectedIndex = index;
+            }
+            catch { /* Do nothing. */ }
+        }
+
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            try { SaveCbWarehouseIndex(); }
+            catch { /* Do nothing. */ }
             Application.Exit();
         }
 
